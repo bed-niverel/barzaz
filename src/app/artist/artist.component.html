@@ -2,7 +2,7 @@
     <div class="container">
 
         <div class="text-center">
-            <h1>Listenn an arzourien dre urzh alfabetek</h1>
+            <h1>Roll an arzourien dre urzh al lizherenneg</h1>
 
             <ul class="pagination">
 			    		<li class="alphabetLetter" *ngFor="let letter of alphabet, let i = index" [class.active]="i == selectedRow" (click)="setClickedRow(i);getArtists(letter)">
@@ -31,5 +31,5 @@
             </ul>
         </div>
     </div>
-   
+
 </div>

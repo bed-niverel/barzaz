@@ -4,9 +4,9 @@
 </div>
 
 <div style="padding-top: 100px;width:80%;padding-left: 200px; padding-right: 200px;">
-    Skrivit ur ger pe meur 3 lizherenn d'an nebeutan
+    Skrivit ur ger pe meur a hini. 3 arouezenn d'an nebeutañ
     <br>
-    Lizherennoù aotreet : 0-9 hag A-Z
+    Arouezennoù aotreet : 0-9 hag A-Z
 
 <div class="form-group row">
   <div class="col-md-10">
@@ -26,22 +26,6 @@
 </div>
 
     <h3>{{sentence}}</h3>
-    <!--
-    <ul>
-      <li *ngFor="let item of array">{{item}}</li>
-    </ul>
-    -->
-    <!--
-    <ul class="list-group">
-      <li class="list-group-item"
-          *ngFor="let item of array">
-        <a target="_blank"
-           href="a">{{item}}
-        </a>
-      </li>
-    </ul>
-    -->
-
         <article class="search-result row" *ngFor="let item of array">
 
           <div class="col-xs-12 col-sm-12 col-md-2">
@@ -51,7 +35,7 @@
           </div>
           <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
             <h3><a href="/songs/{{item.title}}" title="">{{item.title}}</a></h3>
-            <p>{{item.song}}</p>            
+            <p>{{item.song}}</p>
           </div>
           <span class="clearfix borda"></span>
         </article>
