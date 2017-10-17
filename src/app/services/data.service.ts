@@ -47,8 +47,7 @@ export class DataService {
 
   addNewSong(data) {
 
-    //let apiURL = 'http://localhost:3000/search/song';
-    this.apiPath = 'song'
+    this.apiPath = 'song/add'
     let apiURL = `${this.apiRoot}${this.apiPath}`;
 
     console.log(data);
@@ -60,7 +59,31 @@ export class DataService {
               res => { // Success
                 console.log(res);
                 //this.results = res.json().results;
-                resolve(res.json());
+                resolve(res);
+              },
+              msg => { // Error
+                reject(msg);
+              }
+          );
+    });
+    return promise;
+  }
+
+  editSong(data) {
+
+    this.apiPath = 'song/edit'
+    let apiURL = `${this.apiRoot}${this.apiPath}`;
+
+    console.log(data);
+    let promise = new Promise((resolve, reject) => {
+      console.log(apiURL);
+      this.http.put(apiURL,data)
+          .toPromise()
+          .then(
+              res => { // Success
+                console.log(res);
+                //this.results = res.json().results;
+                resolve(res);
               },
               msg => { // Error
                 reject(msg);

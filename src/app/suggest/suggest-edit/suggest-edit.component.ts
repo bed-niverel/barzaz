@@ -7,14 +7,16 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-suggest',
-  templateUrl: './suggest.component.html',
-  styleUrls: ['./suggest.component.css']
+  templateUrl: '../template/html/suggest.html',
+  styleUrls: ['../template/css/suggest.css']
 })
  
 
-export class SuggestComponent implements OnInit {
+export class SuggestEditComponent implements OnInit {
 
   form = new SongInfo('','','','','','');
+
+  private id;
 
 
   constructor(private dataService:DataService, private route: ActivatedRoute, private router: Router) {
@@ -29,6 +31,8 @@ export class SuggestComponent implements OnInit {
         console.log(result['hits']['hits'][0]['_source']);
 
         var obj = result['hits']['hits'][0]['_source'];
+
+        this.id = result['hits']['hits'][0]['_id'];
 
         this.form = new SongInfo('','','',obj['title'],obj['artist'],obj['content']);
 
@@ -51,12 +55,15 @@ export class SuggestComponent implements OnInit {
   	let data = {
   		title:title,
   		artist:artist,
-  		content:content
+  		content:content,
+      id:this.id
   	}
 
-  	this.dataService.addNewSong(data).then((result) => {
-  		console.log("new song added");
-      this.router.navigate(['/suggest/success']);
+    console.log(data);
+
+  	this.dataService.editSong(data).then((result) => {
+  		console.log("new song edited");
+      this.router.navigate(['/']);
   	});
 
   }

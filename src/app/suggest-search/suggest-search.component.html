@@ -1,0 +1,40 @@
+<!--
+<span class="twitter-typeahead" style="position: relative; display: inline-block;">
+						
+	<input class="form-control tt-query" name="query" id="query" placeholder="Klaskit titl ur ganaouenn, un arzour pe komzoù..." style="position: relative; vertical-align: top; background-color: rgb(255, 255, 255);" dir="auto" type="text" [(ngModel)]=query (keyup)=filter()>
+
+	
+	<span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: block; right: auto;" *ngIf="filteredList.length > 0">
+			<span class="tt-suggestions" style="display: block;">
+				<div class="tt-suggestion" style="white-space: nowrap; cursor: pointer;text-align: left;" *ngFor="let item of filteredList,let i=index" (click)="selectMatchTitle(i)">
+					<a>
+						<p style="white-space: normal;">{{item}}</p>
+					</a>
+				</div>
+			</span>
+	</span>
+
+</span>
+-->
+
+
+<div class="input-group" style="padding-top: 100px;">
+	<input class="form-control tt-query" name="query" id="query" placeholder="Klaskit titl ur ganaouenn, un arzour pe komzoù..." style="position: relative; vertical-align: top; background-color: rgb(255, 255, 255);" dir="auto" type="text" [(ngModel)]=query (keyup)=filter()>
+
+	
+	<span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: block; right: auto;" *ngIf="filteredList.length > 0">
+			<span class="tt-suggestions" style="display: block;">
+				<div class="tt-suggestion" style="white-space: nowrap; cursor: pointer;text-align: left;" *ngFor="let item of filteredList,let i=index" (click)="selectMatchTitle(i)">
+					<a> 
+						<p style="white-space: normal;">{{item}}<b *ngIf="!detected && i==0;else other_content"> (Krouiñ) </b></p>
+						<ng-template #other_content><b> (Kemm) </b></ng-template>
+					</a>
+				</div>
+			</span>
+	</span>
+
+
+    <span class="input-group-btn">
+        <button class="btn btn-info" [disabled]="!searchTitle" (click)="addOrEditSong()">{{button}}</button>
+    </span>
+</div>
