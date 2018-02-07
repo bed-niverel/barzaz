@@ -1,10 +1,10 @@
 export class SongInfo {
   constructor(
-    public firstname: string,
-    public lastname: string,
+    public name: string,
     public email: string,
     public title: string,
     public artist: string,
+    public link: string,
     public content: string
   ) {  }
 }

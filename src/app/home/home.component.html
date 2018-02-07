@@ -10,10 +10,10 @@
 						<input class="form-control tt-query" name="query" id="query" placeholder="Klaskit titl ur ganaouenn, un arzour pe komzoù..." style="position: relative; vertical-align: top; background-color: rgb(255, 255, 255);" dir="auto" type="text" [(ngModel)]=query (keyup)=filter()>
 
 						
-						<span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: block; right: auto;" *ngIf="filteredList.length > 0">
+						<span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: block; right: auto;" *ngIf="filteredList.length > 0 && !hidden">
 								<span class="tt-suggestions" style="display: block;">
 									<h3 style="border-bottom: 1px solid #ccc;">kanaouennoù</h3>
-									<div class="tt-suggestion" style="white-space: nowrap; cursor: pointer;text-align: left;" *ngFor="let item of filteredList">
+									<div class="tt-menu tt-suggestion" style="white-space: nowrap; cursor: pointer;text-align: left;" *ngFor="let item of filteredList">
 										<a href="/songs/{{item}}">
 											<p style="white-space: normal;">{{item}}</p>
 										</a>
@@ -36,7 +36,6 @@
 			<div class="col-lg-4" *ngFor="let item of items">
 				<i class="fa fa-music"></i>
 				<h4><a href="/songs/{{item.title}}">{{item.title}}</a></h4>
-				<p>Testennoù da glokaat</p>
 				<small>{{item.artist}}</small>
 			</div>
 		</div>
@@ -48,16 +47,15 @@
 		<div class="container wb">
 			<div class="row centered">
 				<br><br>
-				<div class="col-lg-8 col-lg-offset-2">
 					<h4>Ur ganaouenn/barzhoneg dre zegouezh!</h4>
-					<p>Ha c'hoant o peus dizolei~n kanaouennoù ha barzhonegoù nevez? Implijit ar bouton "dre zegouezh"!</p>
+					<p>Ha c'hoant o peus dizoleiñ kanaouennoù ha barzhonegoù nevez? Implijit ar bouton "dre zegouezh"!</p>
+					<div class="" style="width:30%;margin:0 auto;padding-bottom: 50px">
 
+						<a class="button-suggest" style="text-align: center;">
+							<div style="">Dre zegouezh !</div>
+						</a>
 
 					</div>
-				<div class="col-lg-2"></div>
-				<div class="col-lg-10 col-lg-offset-1" style="padding-bottom: 50px">
-					<button type="button" class="btn btn-success btn-lg">Dre zegouezh!</button>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -67,9 +65,18 @@
 		<div class="row centered">
 			<h4>Kinnig ur ganaouenn</h4>
 			<p>Ne gavoc'h ket ur ganaouenn pe ur barzhoneg? Ouzhpennit anezhi !</p>
-			<div class="col-lg-10 col-lg-offset-1" style="padding-bottom: 50px">
-				<a href="/suggest/search">Kinnig</a>
+			<div class="" style="width:20%;margin:0 auto;padding-bottom: 50px">
+
+				<a class="button-suggest" style="text-align: center;" href="/suggest/search">
+					<div style="">Kinnig ur ganaouenn/barzhoneg</div>
+				</a>
+
 			</div>
+
+
+
+			
+
 		</div>
 		<br>
 		<br>

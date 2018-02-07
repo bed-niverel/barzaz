@@ -70,7 +70,7 @@ export class SuggestSearchComponent implements OnInit {
 
     if (this.query !== "") {
     	this.searchTitle = false;
-      this.dataService.autocomplete(this.query).then((result) => {
+      this.dataService.autocompleteTitles(this.query).then((result) => {
         this.filteredList = [];
         console.log(result);
 

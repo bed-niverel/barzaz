@@ -8,6 +8,7 @@ export class DataService {
 
   //apiRoot : string = 'http://86.215.188.202/search/'
   apiRoot: string = 'http://localhost:3000/search/';
+  //apiRoot: string = 'http://192.168.1.188:3000/search/';
   apiPath: string = '';
 
   name : string = '';
@@ -24,6 +25,7 @@ export class DataService {
   	} else {
   		this.apiPath = 'findSongsByTerms'
   	}
+
 
   	let apiURL = `${this.apiRoot}${this.apiPath}?term=${term}`;
 
@@ -105,7 +107,7 @@ export class DataService {
           .toPromise()
           .then(
               res => { // Success
-                console.log(res);
+                //console.log(res);
                 //this.results = res.json().results;
                 resolve(res.json());
               },
@@ -183,9 +185,32 @@ export class DataService {
 
 
 
+  autocompleteTitles(query) {
+
+    this.apiPath = 'autocompleteTitles'
+    let apiURL = `${this.apiRoot}${this.apiPath}?term=` + query;
+
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(apiURL)
+          .toPromise()
+          .then(
+              res => { // Success
+                console.log(res);
+                //this.results = res.json().results;
+                resolve(res.json());
+              },
+              msg => { // Error
+                reject(msg);
+              }
+          );
+    });
+    return promise;
+  }
+
+
   autocomplete(query) {
 
-    this.apiPath = 'autocomplete'
+    this.apiPath = 'autocomplete2'
     let apiURL = `${this.apiRoot}${this.apiPath}?term=` + query;
 
     let promise = new Promise((resolve, reject) => {

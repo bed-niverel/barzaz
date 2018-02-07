@@ -4,39 +4,24 @@
     <form #myForm="ngForm" action="" class="contact-form" (ngSubmit)="onSubmit(myForm)">
       <fieldset>
         <legend>Oberour</legend>
-        <div class="col-sm-6">
-          <div class="field">
-            <label>Anv bihan:</label>
-          </div>
-          <div class="input-block">
-            <input type="text" class="form-control" placeholder="Anv bihan" name="firstname" [(ngModel)]="form.firstname" #firstname="ngModel" minlength="2" required>
-          </div>
-            <div class="input-block" *ngIf="firstname.errors && (firstname.dirty || firstname.touched)"
-               class="alert alert-danger">
-              <div [hidden]="!firstname.errors.required">
-                firstname is required
-              </div>
-              <div [hidden]="!firstname.errors.minlength">
-                firstname must be at least 2 characters long.
-              </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
+        
+        <div class="col-sm-12">
             <div class="field">
-              <label>Anv familh:</label>
+              <label>Anv :</label>
             </div>
           <div class="input-block">
-            <input type="text" class="form-control" placeholder="Anv familh" name="lastname" [(ngModel)]="form.lastname" #lastname="ngModel" minlength="2">
+            <input type="text" class="form-control" placeholder="Anv" name="name" [(ngModel)]="form.name" #name="ngModel" minlength="2">
           </div>
-          <div class="input-block" *ngIf="lastname.errors && (lastname.dirty || lastname.touched)" class="alert alert-danger">
-              <div [hidden]="!lastname.errors.required">
-                lastname is required
+          <div class="input-block" *ngIf="name.errors && (name.dirty || lastname.touched)" class="alert alert-danger">
+              <div [hidden]="!name.errors.required">
+                An anv a zo rediet
               </div>
-              <div [hidden]="!lastname.errors.minlength">
-                lastname must be at least 2 characters long.
+              <div [hidden]="!name.errors.minlength">
+                An anv a rank bezañ hiroc'h eget 2 lizherenn
               </div>
           </div>
         </div>
+      
         <div class="col-sm-12">
             <div class="field">
               <label>Postel:</label>
@@ -47,10 +32,10 @@
           <div class="input-block" *ngIf="email.errors && (email.dirty || email.touched)"
                class="alert alert-danger">
               <div [hidden]="!email.errors.required">
-                Email is required
+                Ar postel a zo rediet
               </div>
               <div [hidden]="!email.errors.pattern">
-                Email is invalid
+                Ar postel n'eo ket eus ar stumm mat (skouer : toto@gmail.com)
               </div>
           </div>
         </div>
@@ -74,6 +59,14 @@
           <div class="input-block">
             <input type="text" class="form-control" placeholder="Anv an arzhour" name="artist" [(ngModel)]="form.artist" #artist="ngModel" required>
           </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="field">
+            <label>Liamm:</label>
+          </div>
+        <div class="input-block">
+          <input type="text" class="form-control" placeholder="Liamm ar sonerezh (youtube, ...)" name="link" [(ngModel)]="form.link" #link="ngModel">
+        </div>
         </div>
         <div class="col-sm-12">
             <div class="field">

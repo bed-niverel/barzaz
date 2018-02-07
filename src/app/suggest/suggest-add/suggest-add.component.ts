@@ -32,10 +32,12 @@ export class SuggestAddComponent implements OnInit {
   	let title = form.value.title;
   	let content = form.value.content;
   	let artist = form.value.artist;
+    let link = form.value.link;
 
   	let data = {
   		title:title,
   		artist:artist,
+      link: link,
   		content:content
   	}
 

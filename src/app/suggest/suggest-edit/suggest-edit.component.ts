@@ -34,7 +34,7 @@ export class SuggestEditComponent implements OnInit {
 
         this.id = result['hits']['hits'][0]['_id'];
 
-        this.form = new SongInfo('','','',obj['title'],obj['artist'],obj['content']);
+        this.form = new SongInfo('','',obj['title'],obj['artist'],obj['link'],obj['content']);
 
       })
       
@@ -51,10 +51,12 @@ export class SuggestEditComponent implements OnInit {
   	let title = form.value.title;
   	let content = form.value.content;
   	let artist = form.value.artist;
+    let link = form.value.link;
 
   	let data = {
   		title:title,
   		artist:artist,
+      link:link,
   		content:content,
       id:this.id
   	}

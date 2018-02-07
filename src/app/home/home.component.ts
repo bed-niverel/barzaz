@@ -11,6 +11,7 @@ import 'rxjs/add/operator/map';
 
 import {ElementRef} from '@angular/core';
 
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +28,29 @@ export class HomeComponent implements OnInit {
   public filteredList = [];
   public elementRef;
 
+  private hidden:boolean = false;
+
+  @HostListener('click', ['$event']) onClick(event){
+    console.log(event)
+    var target = event.target;
+    this.hidden = true
+    console.log(target.id);
+    
+    if (target.id === "query") { 
+      console.log("here");
+      this.hidden = false;
+        // do whatever you want here
+    }
+    
+
+
+
+    console.log("User Click using Host Listener")
+  }
+
+
   filter() {
+    this.hidden = false;
 
     if (this.query !== "") {
       this.dataService.autocomplete(this.query).then((result) => {
