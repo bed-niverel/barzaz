@@ -230,6 +230,29 @@ export class DataService {
     return promise;
   }
 
+
+
+  getRandomSong() {
+    this.apiPath = 'random'
+    let apiURL = `${this.apiRoot}${this.apiPath}`;
+
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(apiURL)
+          .toPromise()
+          .then(
+              res => { // Success
+                console.log(res);
+                //this.results = res.json().results;
+                resolve(res.json());
+              },
+              msg => { // Error
+                reject(msg);
+              }
+          );
+    });
+    return promise;
+  }
+
       
 
 }

@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
 
   items: any[];
 
-
   public query = '';
 
   public filteredList = [];
@@ -106,11 +105,19 @@ export class HomeComponent implements OnInit {
   			this.items.push({title : title, artist : artist})
   		}
   		
-  	});
-  	 
+  	});  	 
   }
 
+  getRandomSong() {
+    this.dataService.getRandomSong().then((result) => {
 
+      var songTitle = result['hits']['hits'][0]._source.title;
+
+      this.router.navigate(['/songs/' + songTitle]);
+      
+    });
+
+  }
 
 	
 
