@@ -4,7 +4,7 @@
 
 <div class="container songContainer" style="text-align:center;">
 
-	<h4 class="title">{{songTitle}}</h4>
+	<h4 class="title">{{title}}</h4>
 	<h5 class="author"> Skrivet gant {{artist}}</h5>
 
 	<!--TODO : change with request-->
@@ -14,7 +14,9 @@
 
 
 	<div class="col-sm-4">
-		<button class="btn btn-primary">Reizhañ ar c'homzoù</button>
+		<a href="/suggest/edit/{{slug}}">
+			<button class="btn btn-primary">Reizhañ ar c'homzoù</button>
+		</a>
 
 
 		<ng-container *ngIf="url!=null; then template"></ng-container>

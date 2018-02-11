@@ -10,14 +10,15 @@ import {DomSanitizer,SafeResourceUrl,} from '@angular/platform-browser';
 })
 export class SongComponent implements OnInit {
 
-	songTitle: string;
+	slug: string;
+  title: string;
 	song: string;
 	artist: string;
   link: string;
   url: SafeResourceUrl;
 
   constructor(private route: ActivatedRoute, private dataService:DataService, public sanitizer:DomSanitizer) {
-     this.route.params.subscribe( params => this.songTitle = params.songid );
+     this.route.params.subscribe( params => this.slug = params.songid );
 	}
 
 
@@ -26,10 +27,11 @@ export class SongComponent implements OnInit {
   }
 
   getSong() {
-    	this.dataService.getSong(this.songTitle).then((result) => {
-  		this.song = result['hits']['hits'][0]._source.content;
-  		this.artist = result['hits']['hits'][0]._source.artist;
-      this.link = result['hits']['hits'][0]._source.link;
+    	this.dataService.getSong(this.slug).then((result) => {
+        this.title = result['hits']['hits'][0]._source.title;
+    		this.song = result['hits']['hits'][0]._source.content;
+    		this.artist = result['hits']['hits'][0]._source.artist;
+        this.link = result['hits']['hits'][0]._source.link;
 
       this.link = "https://www.youtube.com/embed/" + this.link.split('watch?v=')[1] + "?autoplay=1";
 

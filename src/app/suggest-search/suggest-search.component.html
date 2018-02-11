@@ -29,7 +29,7 @@
 						<span class="tt-suggestions" style="display: block;">
 							<div class="tt-suggestion" style="white-space: nowrap; cursor: pointer;text-align: left;" *ngFor="let item of filteredList,let i=index" (click)="selectMatchTitle(i)">
 								<a> 
-									<p style="white-space: normal;">{{item}}<b *ngIf="!detected && i==0;else other_content"> (Krouiñ) </b></p>
+									<p style="white-space: normal;">{{item.title}}<b *ngIf="!detected && i==0;else other_content"> (Krouiñ) </b></p>
 									<ng-template #other_content><b> (Kemm) </b></ng-template>
 								</a>
 							</div>

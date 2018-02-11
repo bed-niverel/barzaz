@@ -27,6 +27,8 @@ export class HomeComponent implements OnInit {
   public filteredList = [];
   public elementRef;
 
+  private activeSpinner:boolean=false;
+
   private hidden:boolean = false;
 
   @HostListener('click', ['$event']) onClick(event){
@@ -52,14 +54,17 @@ export class HomeComponent implements OnInit {
     this.hidden = false;
 
     if (this.query !== "") {
+      this.activeSpinner= true;
       this.dataService.autocomplete(this.query).then((result) => {
+        this.activeSpinner = false;
         this.filteredList = [];
         console.log(result);
 
         for (var i = 0 ; i < result['hits']['hits'].length; i ++) {
 
-          var content = result['hits']['hits'][i]._source.title;
-          this.filteredList.push(content)
+          var title = result['hits']['hits'][i]._source.title;
+          var slug = result['hits']['hits'][i]._source.slug;
+          this.filteredList.push({"title":title, "slug":slug});
         }
 
       })
@@ -97,12 +102,13 @@ export class HomeComponent implements OnInit {
 
   		this.items = [];
 
-  		var title, artist;
+  		var title, artist, slug;
 
   		for (var i = 0 ; i < result['hits']['hits'].length ; i++) {
   			title = result['hits']['hits'][i]._source.title;
   			artist = result['hits']['hits'][i]._source.artist;
-  			this.items.push({title : title, artist : artist})
+        slug = result['hits']['hits'][i]._source.slug;
+  			this.items.push({title : title, slug:slug, artist : artist})
   		}
   		
   	});  	 
@@ -112,8 +118,9 @@ export class HomeComponent implements OnInit {
     this.dataService.getRandomSong().then((result) => {
 
       var songTitle = result['hits']['hits'][0]._source.title;
+      var songSlug = result['hits']['hits'][0]._source.slug;
 
-      this.router.navigate(['/songs/' + songTitle]);
+      this.router.navigate(['/songs/' + songSlug]);
       
     });
 

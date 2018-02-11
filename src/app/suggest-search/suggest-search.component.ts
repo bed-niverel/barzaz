@@ -10,6 +10,7 @@ import { DataService } from '../services/data.service';
 export class SuggestSearchComponent implements OnInit {
 
   public query = '';
+  public slug = '';
   public button = 'Ouzhpennañ'
   private detected:boolean = false;
 
@@ -32,7 +33,8 @@ export class SuggestSearchComponent implements OnInit {
 
   	this.searchTitle = true;
 
-  	this.query = this.filteredList[index];
+  	this.query = this.filteredList[index].title;
+    this.slug = this.filteredList[index].slug;
 
   	console.log(index);
 
@@ -53,16 +55,12 @@ export class SuggestSearchComponent implements OnInit {
   }
 
 	addOrEditSong() {
-
-
 		if (this.type === 0) {
 			this.router.navigate(['/suggest/add']);
 		} else {
 			console.log("moving to edit page");
-			this.router.navigate(['/suggest/edit/' + this.query]);
+			this.router.navigate(['/suggest/edit/' + this.slug]);
 		}
-
-
 	}
 
 
@@ -74,19 +72,20 @@ export class SuggestSearchComponent implements OnInit {
         this.filteredList = [];
         console.log(result);
 
-
         for (var i = 0 ; i < result['hits']['hits'].length; i ++) {
 
-          var content = result['hits']['hits'][i]._source.title;
-          if (content.toLowerCase() === this.query)
+          var title = result['hits']['hits'][i]._source.title;
+          var slug = result['hits']['hits'][i]._source.slug;
+          if (title.toLowerCase() === this.query) {
           	this.detected = true;
+          }
 
-          this.filteredList.push(content)
+          this.filteredList.push({"title":title, "slug":slug})
         }
 
         //if no song match, add the name (create option)
         if (!this.detected)
-        	this.filteredList.unshift(this.query);
+        	this.filteredList.unshift({"title":this.query});
 
       })
     } else {
