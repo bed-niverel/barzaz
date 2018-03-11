@@ -56,6 +56,7 @@ export class SuggestSearchComponent implements OnInit {
 
 	addOrEditSong() {
 		if (this.type === 0) {
+      this.dataService.changeMessage(this.query);
 			this.router.navigate(['/suggest/add']);
 		} else {
 			console.log("moving to edit page");

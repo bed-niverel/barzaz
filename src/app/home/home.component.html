@@ -1,156 +1,98 @@
 <div id="headerwrap">
-		<div class="container">
-			<div class="row centered">
-				<div class="col-lg-8 col-lg-offset-2">
-				<h1>kavit komzoù ho kanaouennoù karetañ</h1>
+	<div class="container">
+		<div class="row centered">
+			<div class="col-lg-8 col-lg-offset-2">
+			<h1>kavit komzoù ho kanaouennoù karetañ</h1>
 
 
-					<span class="twitter-typeahead" style="position: relative; display: inline-block;">
-						<input class="form-control tt-query" name="query" id="query" placeholder="Klaskit titl ur ganaouenn, un arzour pe komzoù..." style="position: relative; vertical-align: top; height:45px; background-color: rgb(255, 255, 255);" dir="auto" type="text" [(ngModel)]=query (keyup)=filter()>
+				<span class="twitter-typeahead" style="position: relative; display: inline-block;">
+					<input class="form-control tt-query" name="query" id="query" placeholder="Klaskit titl ur ganaouenn, un arzour pe komzoù..." style="position: relative; vertical-align: top; height:45px; background-color: rgb(255, 255, 255);" dir="auto" type="text" [(ngModel)]=query (keyup)=filter()>
 
-					  	<span id="loading5" *ngIf="activeSpinner">
-					          <span id="outerCircle"></span>
-					 		</span>
-						  
+				  	<span id="loading5" *ngIf="activeSpinner">
+			          <span id="outerCircle"></span>
+			 		</span>
+					  
 
-
-
-						<span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: block; right: auto;" *ngIf="filteredList.length > 0 && !hidden">
-								<span class="tt-suggestions" style="display: block;">
-									<h3 style="border-bottom: 1px solid #ccc;">kanaouennoù</h3>
-									<div class="tt-menu tt-suggestion" style="white-space: nowrap; cursor: pointer;text-align: left;" *ngFor="let item of filteredList">
-										<a href="/songs/{{item.slug}}">
-											<p style="white-space: normal;">{{item.title}}</p>
-										</a>
-									</div>
-								</span>
+					<span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: block; right: auto;" *ngIf="filteredList.length > 0 && !hidden">
+						<span class="tt-suggestions" style="display: block;">
+							<h3 style="border-bottom: 1px solid #ccc;">kanaouennoù</h3>
+							<div class="tt-menu tt-suggestion" style="white-space: nowrap; cursor: pointer;text-align: left;" *ngFor="let item of filteredList">
+								<a href="/songs/{{item.slug}}">
+									<p style="white-space: normal;">{{item.title}}</p>
+								</a>
+							</div>
 						</span>
-
 					</span>
 
-				</div>
+				</span>
+
 			</div>
 		</div>
 	</div>
+</div>
 
 
 
 
-	<div class="container w">
+<div class="container w">
+	<div class="row centered">
+		<h4>Kanaouennoù ouzhpennet da ziwezhañ</h4>
+		<br><br>
+		<div class="col-lg-4" *ngFor="let item of items">
+			<i class="fa fa-music"></i>
+			<h4><a href="/songs/{{item.slug}}">{{item.title}}</a></h4>
+			<small>{{item.artist}}</small>
+		</div>
+	</div>
+	<br>
+	<br>
+</div>
+
+<div style="background: #ebebeb">
+	<div class="container wb">
 		<div class="row centered">
-			<h4>Kanaouennoù ouzhpennet da ziwezhañ</h4>
 			<br><br>
-			<div class="col-lg-4" *ngFor="let item of items">
-				<i class="fa fa-music"></i>
-				<h4><a href="/songs/{{item.slug}}">{{item.title}}</a></h4>
-				<small>{{item.artist}}</small>
-			</div>
-		</div>
-		<br>
-		<br>
-	</div>
+				<h4>Ur ganaouenn/barzhoneg dre zegouezh!</h4>
+				<p>Ha c'hoant o peus dizoleiñ kanaouennoù ha barzhonegoù nevez? Implijit ar bouton "dre zegouezh"!</p>
+				<div class="" style="width:30%;margin:0 auto;padding-bottom: 50px">
 
-	<div style="background: #ebebeb">
-		<div class="container wb">
-			<div class="row centered">
-				<br><br>
-					<h4>Ur ganaouenn/barzhoneg dre zegouezh!</h4>
-					<p>Ha c'hoant o peus dizoleiñ kanaouennoù ha barzhonegoù nevez? Implijit ar bouton "dre zegouezh"!</p>
-					<div class="" style="width:30%;margin:0 auto;padding-bottom: 50px">
+					<a class="button-suggest" style="text-align: center;" (click)="getRandomSong()">
+						<div style="">Dre zegouezh !</div>
+					</a>
 
-						<a class="button-suggest" style="text-align: center;" (click)="getRandomSong()">
-							<div style="">Dre zegouezh !</div>
-						</a>
-
-					</div>
-			</div>
+				</div>
 		</div>
 	</div>
+</div>
 
 
-	<div class="container w">
-		<div class="row centered">
-			<h4>Kinnig ur ganaouenn</h4>
-			<p>Ne gavoc'h ket ur ganaouenn pe ur barzhoneg? Ouzhpennit anezhi !</p>
-			<div class="" style="width:30%;margin:0 auto;padding-bottom: 50px">
+<div class="container w">
+	<div class="row centered">
+		<h4>Kinnig ur ganaouenn</h4>
+		<p>Ne gavoc'h ket ur ganaouenn pe ur barzhoneg? Ouzhpennit anezhi !</p>
+		<div class="" style="width:30%;margin:0 auto;padding-bottom: 50px">
 
-				<a class="button-suggest" style="text-align: center;" href="/suggest/search">
-					<div style="">Kinnig ur ganaouenn/barzhoneg</div>
-				</a>
-
-			</div>
-
-
-
-			
+			<a class="button-suggest" style="text-align: center;" href="/suggest/search">
+				<div style="">Kinnig ur ganaouenn/barzhoneg</div>
+			</a>
 
 		</div>
-		<br>
-		<br>
-	</div>
+
+
 
 		
-	<!-- FOOTER da glokaat-->
-	<div id="f">
-		<div class="container">
-			<div class="row centered">
-				<a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-facebook"></i></a>
-			</div>
+
+	</div>
+	<br>
+	<br>
+</div>
+
+	
+<!-- FOOTER da glokaat-->
+<div id="f">
+	<div class="container">
+		<div class="row centered">
+			<a href="#"><i class="fa fa-twitter"></i></a><a href="https://www.facebook.com/bedniverel/"><i class="fa fa-facebook"></i></a>
 		</div>
 	</div>
-
-
-<!-- Mod kozh proto alpha-->
-<!--
-<form>
-
-	<div class="field" id="searchform">
-	  <input type="text" id="searchterm" placeholder="Klask" #input/>
-	  <button type="button" id="search" (click)='searchItem(input.value, type.value)'>Klask</button>
-	</div>
-
-	<select id="typeSelect" #type> 
-		<option id="enfr" value="title">Titl</option>
-		<option id="fren" value="artist">Arzour</option>
-		<option id="fres" value="text">Komzoù</option>
-	</select>
-
-</form>
-
-
-  <div class="container">
-      <div class="input-field col s12">
-        <input id="country" type="text" class="validate filter-input" [(ngModel)]=query (keyup)=filter()>
-        <label for="country">Country</label>
-      </div>
-      <div class="suggestions" *ngIf="filteredList.length > 0">
-          <ul *ngFor="let item of filteredList" >
-              <li >
-                  <a (click)="select(item)">{{item}}</a>
-              </li>
-          </ul>
-      </div>
-  </div>  	
-
-
-
-
-<div style="width:60%;margin:0 auto;">
-
-	<h2>Kanaouennoù ouzhpennet da ziwezhañ</h2>
-	<ul style="width:60%;" class="list">
-		<li *ngFor="let item of items">
-		<h3 class="name"><a href="/songs/{{item.title}}">{{item.title}}</a></h3>
-			<p class="artist">{{item.artist}}</p>
-			<span class="type"><em>kanaouenn</em></span>
-		</li>
-	</ul>
-
 </div>
-
-
-<div id="suggest" style="margin:0 auto;padding-top: 100px;">
-	<h3 style="text-align:center;">Ne gavoc'h ket ar pezh emaoc'h o klask? <a href="/suggest">Kinnigit ar ganaouenn!</a></h3>
-</div>
-
--->

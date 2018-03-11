@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
 
   items: any[];
 
-  public query = '';
+  public query:string = '';
 
   public filteredList = [];
   public elementRef;
@@ -32,21 +32,12 @@ export class HomeComponent implements OnInit {
   private hidden:boolean = false;
 
   @HostListener('click', ['$event']) onClick(event){
-    console.log(event)
     var target = event.target;
     this.hidden = true
-    console.log(target.id);
     
     if (target.id === "query") { 
-      console.log("here");
       this.hidden = false;
-        // do whatever you want here
     }
-    
-
-
-
-    console.log("User Click using Host Listener")
   }
 
 
@@ -95,38 +86,27 @@ export class HomeComponent implements OnInit {
   }
 
 
-  getLatestSongs() {
+  async getLatestSongs() {
 
+    try {
+      this.items = await this.dataService.getLatestSongs();  
+    } catch(error) {
+      console.log(error);
+    }
 
-  	this.dataService.getLatestSongs().then((result) => {
-
-  		this.items = [];
-
-  		var title, artist, slug;
-
-  		for (var i = 0 ; i < result['hits']['hits'].length ; i++) {
-  			title = result['hits']['hits'][i]._source.title;
-  			artist = result['hits']['hits'][i]._source.artist;
-        slug = result['hits']['hits'][i]._source.slug;
-  			this.items.push({title : title, slug:slug, artist : artist})
-  		}
-  		
-  	});  	 
   }
 
-  getRandomSong() {
-    this.dataService.getRandomSong().then((result) => {
 
-      var songTitle = result['hits']['hits'][0]._source.title;
-      var songSlug = result['hits']['hits'][0]._source.slug;
-
+  async getRandomSong() {
+    try {
+      let result = await this.dataService.getRandomSong();  
+      let songSlug = result[0].slug;
       this.router.navigate(['/songs/' + songSlug]);
-      
-    });
+
+    } catch(error) {
+      console.log(error);
+    }
 
   }
-
-	
-
 
 }

@@ -12,14 +12,12 @@ import { DataService } from './services/data.service';
 import { PagerService } from './services/pager.service';
 import { SongComponent } from './song/song.component';
 import { NavComponent } from './nav/nav.component';
-import { SuggestComponent } from './suggest/suggestForm/suggest.component';
 import { SearchComponent } from './search/search.component';
 import { HomeComponent } from './home/home.component';
 import { ArtistComponent } from './artist/artist.component';
 import { SongListComponent } from './song-list/song-list.component';
 import { SuggestSearchComponent } from './suggest-search/suggest-search.component';
-import { SuggestEditComponent } from './suggest/suggest-edit/suggest-edit.component';
-import { SuggestAddComponent } from './suggest/suggest-add/suggest-add.component';
+import { SuggestComponent } from './suggest/suggest.component';
 import { SuggestSuccessComponent } from './suggest/suggest-success/suggest-success.component';
 
 
@@ -36,11 +34,11 @@ const appRoutes: Routes = [
 	},
 	{
 		path:'suggest/edit/:songid',
-		component:SuggestEditComponent
+		component:SuggestComponent
 	},
 	{
 		path:'suggest/add',
-		component:SuggestAddComponent
+		component:SuggestComponent
 	},
 	{
 		path:'search',
@@ -80,8 +78,7 @@ const appRoutes: Routes = [
     ArtistComponent,
     SongListComponent,
     SuggestSearchComponent,
-    SuggestEditComponent,
-    SuggestAddComponent,
+    SuggestComponent,
     SuggestSuccessComponent
   ],
   imports: [

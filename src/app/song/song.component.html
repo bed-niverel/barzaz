@@ -5,11 +5,12 @@
 <div class="container songContainer" style="text-align:center;">
 
 	<h4 class="title">{{title}}</h4>
-	<h5 class="author"> Skrivet gant {{artist}}</h5>
+	<h5 class="author"> Skrivet gant <a href="/artists/{{artist}}/songs">{{artist}}</a></h5>
 
 	<!--TODO : change with request-->
 	<div class="col-sm-offset-2 col-sm-6">
-		<pre>{{song}}</pre>
+		<!--<pre>{{song}}</pre>-->
+		<div style="white-space: pre-line;" [innerHTML]="song"></div>
 	</div>
 
 
@@ -25,6 +26,17 @@
 			<iframe width="420" height="315" [src]="url">
 			</iframe> 
 		</ng-template>
+
+		<div>
+			Skrivet gant ar memes arzour : 
+			<div *ngFor="let song of songs"><a href='/songs/{{song.slug}}'>{{song.title}}</a></div>
+		        <ul class="pagination">
+				    <li class="alphabetLetter" *ngFor="let letter of alphabet, let i = index" [class.active]="i == selectedRow" (click)="setClickedRow(i);getArtists(letter)">
+				        	{{letter}}
+				    </li>
+				</ul>
+
+		</div>
 
 
 	</div>

@@ -18,7 +18,7 @@ export class SearchComponent implements OnInit {
   searchString: string = '';
   searchType:string = '';
 
-  searchTypes: any = ['title', 'artist', 'text'];
+  searchTypes: any = [{name:'titl', type:'title'}, {name:'arzour', type:'artist'}, {name:'komzoù', type:'text'}];
   selectedType: string = 'title';
 
   constructor(private dataService:DataService, private route: ActivatedRoute) {
@@ -52,9 +52,10 @@ export class SearchComponent implements OnInit {
   			for (var i = 0 ; i < result['hits']['hits'].length ; i++) {
 	  			//console.log(result['hits']['hits'][i]);
 	  			var obj = {};
-	  			obj['title'] = result['hits']['hits'][i]['_source']['title']
-	  			obj['artist'] = result['hits']['hits'][i]['_source']['artist']
-	  			obj['song'] = result['hits']['hits'][i]['_source']['content'].substring(0,200) + '...'
+	  			obj['title'] = result['hits']['hits'][i]['_source']['title'];
+          obj['slug'] = result['hits']['hits'][i]['_source']['slug'];
+	  			obj['artist'] = result['hits']['hits'][i]['_source']['artist'];
+	  			obj['song'] = result['hits']['hits'][i]['_source']['content'].substring(0,100) + '...';
 	  			this.array.push(obj);
   			}
   			this.found = true;

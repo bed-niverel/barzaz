@@ -5,14 +5,12 @@
             <h1>Listenn kanaouennoù {{artist}}</h1>
 
 
-            <div *ngFor="let song of songs"><a href='/songs/{{song}}'>{{song}}</a></div>
-
-
-            <ul class="pagination">
-			    		<li class="alphabetLetter" *ngFor="let letter of alphabet, let i = index" [class.active]="i == selectedRow" (click)="setClickedRow(i);getArtists(letter)">
-			        	{{letter}}
-			        </li>
-			    	</ul>
+            <div *ngFor="let song of songs"><a href='/songs/{{song.slug}}'>{{song.title}}</a></div>
+		        <ul class="pagination">
+				    <li class="alphabetLetter" *ngFor="let letter of alphabet, let i = index" [class.active]="i == selectedRow" (click)="setClickedRow(i);getArtists(letter)">
+				        	{{letter}}
+				    </li>
+				</ul>
 			  </div>
 		</div>
 </div>

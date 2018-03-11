@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpModule, Http, Response} from '@angular/http';
 import 'rxjs/Rx';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 
 @Injectable()
@@ -13,7 +14,16 @@ export class DataService {
 
   name : string = '';
 
+  private messageSource = new BehaviorSubject<string>("");
+  currentMessage = this.messageSource.asObservable();
+
+
   constructor(private http: Http) { }
+
+
+  changeMessage(message: string) {
+    this.messageSource.next(message)
+  }
 
   searchTerm(term:string, type:string) {
   	//console.log('searching the following term : ' + term);
@@ -97,68 +107,33 @@ export class DataService {
 
 
 
-  getSong(song) {
-
-    this.apiPath = 'song'
-    let apiURL = `${this.apiRoot}${this.apiPath}/` + song;
-
-    let promise = new Promise((resolve, reject) => {
-      this.http.get(apiURL)
-          .toPromise()
-          .then(
-              res => { // Success
-                //console.log(res);
-                //this.results = res.json().results;
-                resolve(res.json());
-              },
-              msg => { // Error
-                reject(msg);
-              }
-          );
-    });
-    return promise;
+  async getSong(song) {
+    try {
+      let result = await this.makeRequest('song/' + song);  
+      return result;
+    } catch(error) {
+      throw(error);
+    }
   }
 
-  getSongs(artist) : Promise<any[]> {
-    this.apiPath = 'artists'
-    let apiURL = `${this.apiRoot}${this.apiPath}/` + artist + '/songs';
+  async getSongs(artist) : Promise<any[]> {
 
-    let promise = new Promise((resolve, reject) => {
-      console.log(apiURL);
-      this.http.get(apiURL)
-          .toPromise()
-          .then(
-              res => { // Success
-                console.log(res);
-                resolve(res.json());
-              },
-              msg => { // Error
-                reject(msg);
-              }
-          );
-    });
-    return promise;
+    try {
+      let result = await this.makeRequest('artists/' + artist + '/songs');  
+      return result;
+    } catch(error) {
+      throw(error);
+    }
   }
 
-  getLatestSongs() {
-    this.apiPath = 'latestSongs'
-    let apiURL = `${this.apiRoot}${this.apiPath}`;
 
-    let promise = new Promise((resolve, reject) => {
-      this.http.get(apiURL)
-          .toPromise()
-          .then(
-              res => { // Success
-                console.log(res);
-                //this.results = res.json().results;
-                resolve(res.json());
-              },
-              msg => { // Error
-                reject(msg);
-              }
-          );
-    });
-    return promise;
+  async getLatestSongs() {
+    try {
+      let result = await this.makeRequest('latestSongs');  
+      return result;
+    } catch(error) {
+      throw(error);
+    }
   }
 
   getArtists(letter) {
@@ -210,7 +185,7 @@ export class DataService {
 
   autocomplete(query) {
 
-    this.apiPath = 'autocomplete2'
+    this.apiPath = 'autocomplete'
     let apiURL = `${this.apiRoot}${this.apiPath}?term=` + query;
 
     let promise = new Promise((resolve, reject) => {
@@ -232,28 +207,26 @@ export class DataService {
 
 
 
-  getRandomSong() {
-    this.apiPath = 'random'
-    let apiURL = `${this.apiRoot}${this.apiPath}`;
-
-    let promise = new Promise((resolve, reject) => {
-      this.http.get(apiURL)
-          .toPromise()
-          .then(
-              res => { // Success
-                console.log(res);
-                //this.results = res.json().results;
-                resolve(res.json());
-              },
-              msg => { // Error
-                reject(msg);
-              }
-          );
-    });
-    return promise;
+  async getRandomSong() {
+    try {
+      let result = await this.makeRequest('random');  
+      return result;
+    } catch(error) {
+      throw(error);
+    }
   }
+   
 
-      
+   async makeRequest(path) {
+      let apiURL = `${this.apiRoot}${path}`;
+
+      try {
+        let response = await this.http.get(apiURL).toPromise();
+        return response.json();
+      } catch (error) {
+        throw(error);
+      }
+   }
 
 }
 
