@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
 
   private hidden:boolean = false;
 
-  @HostListener('click', ['$event']) onClick(event){
+  @HostListener('click', ['$event']) onClick(event) {
     var target = event.target;
     this.hidden = true
     

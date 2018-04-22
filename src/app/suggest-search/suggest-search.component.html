@@ -25,7 +25,7 @@
 
 
 
-				<span class="tt-dropdown-menu" style="/*position: absolute; top: 100%; */z-index: 100; display: block;" *ngIf="filteredList.length > 0">
+				<span class="tt-dropdown-menu" style="/*position: absolute; top: 100%; */z-index: 100; display: block;" *ngIf="filteredList.length > 0 && !hidden">
 						<span class="tt-suggestions" style="display: block;">
 							<div class="tt-suggestion" style="white-space: nowrap; cursor: pointer;text-align: left;" *ngFor="let item of filteredList,let i=index" (click)="selectMatchTitle(i)">
 								<a> 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { DataService } from '../services/data.service';
 
+import { HostListener } from '@angular/core';
+
 @Component({
   selector: 'app-suggest-search',
   templateUrl: './suggest-search.component.html',
@@ -22,10 +24,22 @@ export class SuggestSearchComponent implements OnInit {
 
   public filteredList = [];
 
+  private hidden:boolean = false;
+
   constructor(private router: Router, private dataService:DataService) {
   }
 
   ngOnInit() {
+  }
+
+  @HostListener('click', ['$event']) onClick(event) {
+
+    var target = event.target;
+    this.hidden = true
+    
+    if (target.id === "query") { 
+      this.hidden = false;
+    }
   }
 
 

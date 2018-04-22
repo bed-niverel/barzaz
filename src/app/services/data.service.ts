@@ -182,6 +182,29 @@ export class DataService {
     return promise;
   }
 
+  autocompleteArtists(query) {
+
+    this.apiPath = 'autocompleteArtists'
+    let apiURL = `${this.apiRoot}${this.apiPath}?term=` + query;
+
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(apiURL)
+          .toPromise()
+          .then(
+              res => { // Success
+                console.log(res);
+                //this.results = res.json().results;
+                resolve(res.json());
+              },
+              msg => { // Error
+                reject(msg);
+              }
+          );
+    });
+    return promise;
+  }
+
+
 
   autocomplete(query) {
 

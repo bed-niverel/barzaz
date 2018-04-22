@@ -57,8 +57,27 @@
               <label>Arzour:</label>
             </div>
           <div class="input-block">
-            <input type="text" class="form-control" placeholder="Anv an arzhour" name="artist" [(ngModel)]="form.artist" #artist="ngModel" required>
+            <!--<input type="text" class="form-control" placeholder="Anv an arzhour" name="artist" [(ngModel)]="form.artist" #artist="ngModel" required>-->
+            <input class="form-control tt-query" name="artist" id="query" placeholder="Anv an arzhour" style="position: relative; vertical-align: top; background-color: rgb(255, 255, 255);" dir="auto" type="text" [(ngModel)]="form.artist" #artist="ngModel" (keyup)=filter() required>
+
+            <span class="tt-dropdown-menu" style="position: absolute; top: 100%; z-index: 100; display: block;" *ngIf="filteredList.length > 0 && !hidden">
+                <span class="tt-suggestions" style="display: block;">
+                  <div class="tt-suggestion" style="white-space: nowrap; cursor: pointer;text-align: left;" *ngFor="let item of filteredList,let i=index" (click)="selectMatchingArtist(i)">
+                    <a> 
+                      <p style="white-space: normal;">{{item.artist}}<b *ngIf="!detected && i==0;else other_content"> (Krouiñ) </b></p>
+                      <ng-template #other_content></ng-template>
+                    </a>
+                  </div>
+                </span>
+            </span>
+
           </div>
+
+
+          
+
+
+
         </div>
         <div class="col-sm-12">
           <div class="field">

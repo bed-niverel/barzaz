@@ -4,6 +4,8 @@ import { DataService } from '../services/data.service';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
+import { HostListener } from '@angular/core';
+
 
 @Component({
   selector: 'app-suggest',
@@ -14,7 +16,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 export class SuggestComponent implements OnInit {
 
-  form = new SongInfo('','','','','','');
+  private form = new SongInfo('','','','','','');
 
   private title:string='';
 
@@ -23,6 +25,16 @@ export class SuggestComponent implements OnInit {
   private router: Router;
   private route: ActivatedRoute;
   private edit:boolean;
+
+
+
+  private detected:boolean = false;
+  public query = '';
+  public filteredList = [];
+  private hidden:boolean = false;
+
+  public button = 'Ouzhpennañ'
+  private type:number = 0;
 
   constructor(private dataService:DataService, private _route: ActivatedRoute, private _router: Router) {
     this.router=_router;
@@ -94,5 +106,52 @@ export class SuggestComponent implements OnInit {
     }
 
   }
+
+ @HostListener('click', ['$event']) onClick(event) {
+
+    var target = event.target;
+    this.hidden = true
+    
+    if (target.id === "query") { 
+      this.hidden = false;
+    }
+  }
+
+
+  selectMatchingArtist(index) {
+
+    this.form.artist = this.filteredList[index].artist;
+
+  }
+
+
+  filter() {
+
+    //if (this.query !== "") {
+    if (this.form.artist != "") {
+      this.dataService.autocompleteArtists(this.form.artist).then((result) => {
+        this.filteredList = [];
+        console.log(result);
+
+        for (var i = 0 ; i < result['hits']['hits'].length; i ++) {
+
+          var artist = result['hits']['hits'][i]._source.artist;
+          if (artist.toLowerCase() === this.form.artist) {
+            this.detected = true;
+          }
+
+          this.filteredList.push({"artist":artist})
+        }
+
+        //if no artist match, add the name (create option)
+        if (!this.detected)
+          this.filteredList.unshift({"artist":this.form.artist});
+
+      })
+    } else {
+      this.filteredList = [];
+    }
+  }
+
 
 }
