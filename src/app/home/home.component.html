@@ -6,19 +6,33 @@
 
 
 				<span class="twitter-typeahead" style="position: relative; display: inline-block;">
-					<input class="form-control tt-query" name="query" id="query" placeholder="Klaskit titl ur ganaouenn, un arzour pe komzoù..." style="position: relative; vertical-align: top; height:45px; background-color: rgb(255, 255, 255);" dir="auto" type="text" [(ngModel)]=query (keyup)=filter()>
+					<input class="form-control tt-query" name="query" id="query" placeholder="Klaskit titl ur ganaouenn, un arzour pe komzoù..." style="position: relative; vertical-align: top; height:45px; background-color: rgb(255, 255, 255);" autocomplete="off" dir="auto" type="text" [(ngModel)]=query (keyup)=filter() (keyup.enter)="searchItem()">
 
 				  	<span id="loading5" *ngIf="activeSpinner">
 			          <span id="outerCircle"></span>
 			 		</span>
 					  
 
-					<span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: block; right: auto;" *ngIf="filteredList.length > 0 && !hidden">
+					<span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: block; right: auto; text-align: left;" *ngIf="songs.length > 0 && !hidden">
 						<span class="tt-suggestions" style="display: block;">
-							<h3 style="border-bottom: 1px solid #ccc;">kanaouennoù</h3>
-							<div class="tt-menu tt-suggestion" style="white-space: nowrap; cursor: pointer;text-align: left;" *ngFor="let item of filteredList">
+							<div class="tt-menu tt-suggestion" style="border-bottom:1px solid #ccc;">
+								<a href="/search/{{query}}">
+									<h3>An holl zisoc'hoù > </h3>
+								</a>
+							</div>
+
+							<div class="label-dropdown-menu">kanaouennoù</div>
+							<div class="tt-menu tt-suggestion" style="white-space: nowrap; cursor: pointer;text-align: left;" *ngFor="let item of songs">
 								<a href="/songs/{{item.slug}}">
 									<p style="white-space: normal;">{{item.title}}</p>
+								</a>
+							</div>
+						</span>
+						<span class="tt-suggestions" style="display: block;" *ngIf="artists.length > 0">
+							<div class="label-dropdown-menu">Arzourien</div>
+							<div class="tt-menu tt-suggestion" style="white-space: nowrap; cursor: pointer;text-align: left;" *ngFor="let item of artists">
+								<a href="/artists/{{item.name}}/songs">
+									<p style="white-space: normal;">{{item.name}}</p>
 								</a>
 							</div>
 						</span>

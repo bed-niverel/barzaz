@@ -41,11 +41,7 @@ const appRoutes: Routes = [
 		component:SuggestComponent
 	},
 	{
-		path:'search',
-		component:SearchComponent
-	},
-	{
-		path:'search',
+		path:'search/:term',
 		component:SearchComponent
 	},
 	{

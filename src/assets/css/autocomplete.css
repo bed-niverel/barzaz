@@ -54,3 +54,22 @@ width:100%;
   margin: 0;
 }
 
+.tt-dropdown-menu .tt-suggestion.tt-cursor,
+.tt-menu .tt-suggestion.tt-cursor,
+.tt-dropdown-menu .tt-suggestion:hover,
+.tt-menu .tt-suggestion:hover {
+  cursor: pointer;
+  text-decoration: none;
+  outline: 0;
+  background-color: #f5f5f5;
+  color: #262626;
+}
+
+.label-dropdown-menu {
+  font-weight: bold;
+  padding: 3px 20px;
+  border-bottom: 1px solid #ccc;
+  background-color: #38ad7e;
+
+}
+

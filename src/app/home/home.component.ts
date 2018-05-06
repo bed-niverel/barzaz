@@ -23,8 +23,10 @@ export class HomeComponent implements OnInit {
   items: any[];
 
   public query:string = '';
+  public songs = [];
+  public artists = [];
 
-  public filteredList = [];
+
   public elementRef;
 
   private activeSpinner:boolean=false;
@@ -40,7 +42,6 @@ export class HomeComponent implements OnInit {
     }
   }
 
-
   filter() {
     this.hidden = false;
 
@@ -48,25 +49,39 @@ export class HomeComponent implements OnInit {
       this.activeSpinner= true;
       this.dataService.autocomplete(this.query).then((result) => {
         this.activeSpinner = false;
-        this.filteredList = [];
-        console.log(result);
+        this.songs = [];
+        this.artists = [];
 
-        for (var i = 0 ; i < result['hits']['hits'].length; i ++) {
 
-          var title = result['hits']['hits'][i]._source.title;
-          var slug = result['hits']['hits'][i]._source.slug;
-          this.filteredList.push({"title":title, "slug":slug});
+        let songs = result[0];
+        let artists = result[1];
+
+
+        for (var i = 0 ; i < songs['hits']['hits'].length; i ++) {
+
+          var title = songs['hits']['hits'][i]._source.title;
+          var slug = songs['hits']['hits'][i]._source.slug;
+          this.songs.push({"title":title, "slug":slug});
         }
+
+        for (var i = 0 ; i < artists['hits']['hits'].length; i ++) {
+          var name = artists['hits']['hits'][i]._source.name;
+          this.artists.push({"name":name});
+        }
+        console.log("artists");
+        console.log(this.artists);
 
       })
     } else {
-      this.filteredList = [];
+      this.songs = [];
+      this.artists = [];    
     }
   }
    
   select(item){
       this.query = item;
-      this.filteredList = [];
+      this.songs = [];
+      this.artists = [];
   }
 
 
@@ -79,10 +94,9 @@ export class HomeComponent implements OnInit {
   	this.getLatestSongs();
   }
 
-  searchItem(term:string, type:string) {
-  	console.log('term : ' + term + ' , type : ' + type);
+  searchItem() {
     
-    this.router.navigate(['/search'], { queryParams: {term:term, type:type} });
+    this.router.navigate(['/search/' + this.query]);
   }
 
 

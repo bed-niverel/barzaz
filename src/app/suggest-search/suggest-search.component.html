@@ -21,7 +21,7 @@
 			<label class="col-md-3">Titl ar ganaouenn/barzhoneg</label>
 
 			<div class="col-md-7">
-				<input class="form-control tt-query" name="query" id="query" placeholder="Klaskit titl ur ganaouenn, un arzour pe komzoù..." style="position: relative; vertical-align: top; background-color: rgb(255, 255, 255);" dir="auto" type="text" [(ngModel)]=query (keyup)=filter()>
+				<input class="form-control tt-query" name="query" id="query" placeholder="Klaskit titl ur ganaouenn, un arzour pe komzoù..." style="position: relative; vertical-align: top; background-color: rgb(255, 255, 255);" dir="auto" type="text" autocomplete="off" [(ngModel)]=query (keyup)=filter()>
 
 
 
@@ -41,7 +41,7 @@
 			
 
 		    <span class="col-md-2">
-		        <button class="btn btn-info" style="background-color:#ff7878;border-color: black" [disabled]="!searchTitle" (click)="addOrEditSong()">{{button}}</button>
+		        <button class="btn btn-info" style="background-color:#38ad7e;border-color: black" [disabled]="!searchTitle" (click)="addOrEditSong()">{{button}}</button>
 		    </span>
 
 

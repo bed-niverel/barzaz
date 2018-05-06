@@ -46,7 +46,7 @@ p {
 
 /* Links */
 a {
-    color: #f85c37;
+    color: #38ad7e;
     word-wrap: break-word;
 
     -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
@@ -95,11 +95,11 @@ a:after {
 }
 
 .navbar-inverse .navbar-nav > .active > a {
-    background: #ff7878
+    background: #38ad7e
 }
 
 .navbar-inverse .navbar-nav > .active > a:focus {
-    background: #ff7878
+    background: #38ad7e
 }
 
 
@@ -245,7 +245,7 @@ a:after {
 }
 
 .w i {
-    color: #ff7878;
+    color: #38ad7e;
     font-size: 30px;
 }
 
