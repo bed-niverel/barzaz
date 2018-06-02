@@ -78,20 +78,6 @@ p {
 
 
 
-
-
-
-
-a.button-suggest div{background-color:#ff7878;color:white;font-size:2rem;border:2px solid #000;padding:4px 20px;font-weight:700;text-align:center;cursor:pointer}
-
-a.button-suggest:active div,a.button-suggest:focus div,a.button-suggest:hover div,button:active,button:focus,button:hover{background:#000!important;color:#fff!important}
-
-
-
-
-
-
-
 #loading5  
 {
   display:block;

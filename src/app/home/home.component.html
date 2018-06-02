@@ -5,16 +5,15 @@
 			<h1>kavit komzoù ho kanaouennoù karetañ</h1>
 
 
-				<span class="twitter-typeahead" style="position: relative; display: inline-block;">
-					<input class="form-control tt-query" name="query" id="query" placeholder="Klaskit titl ur ganaouenn, un arzour pe komzoù..." style="position: relative; vertical-align: top; height:45px; background-color: rgb(255, 255, 255);" autocomplete="off" dir="auto" type="text" [(ngModel)]=query (keyup)=filter() (keyup.enter)="searchItem()">
+				<span class="twitter-typeahead">
+					<input class="form-control tt-query" name="query" id="query" placeholder="Klaskit titl ur ganaouenn, un arzour pe komzoù..." autocomplete="off" dir="auto" type="text" [(ngModel)]=query (keyup)=filter() (keyup.enter)="searchItem()">
 
 				  	<span id="loading5" *ngIf="activeSpinner">
 			          <span id="outerCircle"></span>
 			 		</span>
-					  
-
-					<span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: block; right: auto; text-align: left;" *ngIf="songs.length > 0 && !hidden">
-						<span class="tt-suggestions" style="display: block;">
+					
+					<span class="tt-dropdown-menu" *ngIf="songs.length > 0 && !hidden">
+						<span class="tt-suggestions">
 							<div class="tt-menu tt-suggestion" style="border-bottom:1px solid #ccc;">
 								<a href="/search/{{query}}">
 									<h3>An holl zisoc'hoù > </h3>
@@ -22,15 +21,15 @@
 							</div>
 
 							<div class="label-dropdown-menu">kanaouennoù</div>
-							<div class="tt-menu tt-suggestion" style="white-space: nowrap; cursor: pointer;text-align: left;" *ngFor="let item of songs">
+							<div class="tt-menu tt-suggestion" *ngFor="let item of songs">
 								<a href="/songs/{{item.slug}}">
 									<p style="white-space: normal;">{{item.title}}</p>
 								</a>
 							</div>
 						</span>
-						<span class="tt-suggestions" style="display: block;" *ngIf="artists.length > 0">
+						<span class="tt-suggestions" *ngIf="artists.length > 0">
 							<div class="label-dropdown-menu">Arzourien</div>
-							<div class="tt-menu tt-suggestion" style="white-space: nowrap; cursor: pointer;text-align: left;" *ngFor="let item of artists">
+							<div class="tt-menu tt-suggestion" *ngFor="let item of artists">
 								<a href="/artists/{{item.name}}/songs">
 									<p style="white-space: normal;">{{item.name}}</p>
 								</a>
@@ -62,19 +61,16 @@
 	<br>
 </div>
 
-<div style="background: #ebebeb">
+<div class="grey-background">
 	<div class="container wb">
 		<div class="row centered">
-			<br><br>
-				<h4>Ur ganaouenn/barzhoneg dre zegouezh!</h4>
-				<p>Ha c'hoant o peus dizoleiñ kanaouennoù ha barzhonegoù nevez? Implijit ar bouton "dre zegouezh"!</p>
-				<div class="" style="width:30%;margin:0 auto;padding-bottom: 50px">
-
-					<a class="button-suggest" style="text-align: center;" (click)="getRandomSong()">
-						<div style="">Dre zegouezh !</div>
-					</a>
-
-				</div>
+			<h4>Ur ganaouenn/barzhoneg dre zegouezh!</h4>
+			<p>Ha c'hoant o peus dizoleiñ kanaouennoù ha barzhonegoù nevez? Implijit ar bouton "dre zegouezh"!</p>
+			<div class="button-container">
+				<a class="button-suggest" (click)="getRandomSong()">
+					<div>Dre zegouezh !</div>
+				</a>
+			</div>
 		</div>
 	</div>
 </div>
@@ -84,21 +80,12 @@
 	<div class="row centered">
 		<h4>Kinnig ur ganaouenn</h4>
 		<p>Ne gavoc'h ket ur ganaouenn pe ur barzhoneg? Ouzhpennit anezhi !</p>
-		<div class="" style="width:30%;margin:0 auto;padding-bottom: 50px">
-
-			<a class="button-suggest" style="text-align: center;" href="/suggest/search">
-				<div style="">Kinnig ur ganaouenn/barzhoneg</div>
+		<div class="button-container">
+			<a class="button-suggest" href="/suggest/search">
+				<div>Kinnig ur ganaouenn/barzhoneg</div>
 			</a>
-
 		</div>
-
-
-
-		
-
 	</div>
-	<br>
-	<br>
 </div>
 
 	

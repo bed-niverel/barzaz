@@ -3,7 +3,6 @@ import { Location } from '@angular/common';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { DataService } from '../services/data.service';
 
-
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
@@ -25,12 +24,9 @@ export class HomeComponent implements OnInit {
   public query:string = '';
   public songs = [];
   public artists = [];
-
-
   public elementRef;
 
   private activeSpinner:boolean=false;
-
   private hidden:boolean = false;
 
   @HostListener('click', ['$event']) onClick(event) {

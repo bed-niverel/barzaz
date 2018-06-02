@@ -4,7 +4,7 @@
 }
 .contact-form .input-block {
   background-color: rgba(255, 255, 255, 0.8);
-  border: solid 1px #FF512F;
+  border: solid 1px #38ad7e;
   width: 100%;
   height: 40px;
   padding: 10px;
@@ -58,7 +58,7 @@
   top: 0;
 }
 .contact-form .square-button {
-  background-color: darkorange;
+  background-color: #38ad7e;
   color: rgba(255, 255, 255, 0.8);
   font-size: 26px;
   text-transform: uppercase;
