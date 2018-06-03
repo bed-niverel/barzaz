@@ -12,11 +12,13 @@ import { DataService } from './services/data.service';
 import { PagerService } from './services/pager.service';
 import { SongComponent } from './song/song.component';
 import { NavComponent } from './nav/nav.component';
-import { SuggestComponent } from './suggest/suggestForm/suggest.component';
 import { SearchComponent } from './search/search.component';
 import { HomeComponent } from './home/home.component';
 import { ArtistComponent } from './artist/artist.component';
 import { SongListComponent } from './song-list/song-list.component';
+import { SuggestSearchComponent } from './suggest-search/suggest-search.component';
+import { SuggestComponent } from './suggest/suggest.component';
+import { SuggestSuccessComponent } from './suggest/suggest-success/suggest-success.component';
 
 
 export class PlunkerMaterialModule {}
@@ -27,15 +29,19 @@ const appRoutes: Routes = [
 		component:HomeComponent
 	},
 	{
-		path:'suggest',
+		path:'suggest/search',
+		component:SuggestSearchComponent
+	},
+	{
+		path:'suggest/edit/:songid',
 		component:SuggestComponent
 	},
 	{
-		path:'search',
-		component:SearchComponent
+		path:'suggest/add',
+		component:SuggestComponent
 	},
 	{
-		path:'search',
+		path:'search/:term',
 		component:SearchComponent
 	},
 	{
@@ -66,7 +72,10 @@ const appRoutes: Routes = [
     SearchComponent,
     HomeComponent,
     ArtistComponent,
-    SongListComponent
+    SongListComponent,
+    SuggestSearchComponent,
+    SuggestComponent,
+    SuggestSuccessComponent
   ],
   imports: [
     BrowserModule,

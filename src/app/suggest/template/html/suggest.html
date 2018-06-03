@@ -1,0 +1,106 @@
+<div class="top-padding">
+  <div class="contact-wrap">
+    <form #myForm="ngForm" action="" class="contact-form" (ngSubmit)="onSubmit(myForm)">
+      <fieldset>
+        <legend>Oberour</legend>
+        
+        <div class="col-sm-12">
+            <div class="field">
+              <label>Anv :</label>
+            </div>
+          <div class="input-block">
+            <input type="text" class="form-control" placeholder="Anv" name="name" [(ngModel)]="form.name" #name="ngModel" minlength="2">
+          </div>
+          <div class="input-block" *ngIf="name.errors && (name.dirty || lastname.touched)" class="alert alert-danger">
+              <div [hidden]="!name.errors.required">
+                An anv a zo rediet
+              </div>
+              <div [hidden]="!name.errors.minlength">
+                An anv a rank bezañ hiroc'h eget 2 lizherenn
+              </div>
+          </div>
+        </div>
+      
+        <div class="col-sm-12">
+            <div class="field">
+              <label>Postel:</label>
+            </div>
+          <div class="input-block">
+            <input type="text" class="form-control" type="email"placeholder="Postel" name="email" [(ngModel)]="form.email" #email="ngModel" pattern="[^ @]*@[^ @]*" required>
+          </div>
+          <div class="input-block" *ngIf="email.errors && (email.dirty || email.touched)"
+               class="alert alert-danger">
+              <div [hidden]="!email.errors.required">
+                Ar postel a zo rediet
+              </div>
+              <div [hidden]="!email.errors.pattern">
+                Ar postel n'eo ket eus ar stumm mat (skouer : toto@gmail.com)
+              </div>
+          </div>
+        </div>
+      </fieldset>
+      
+      
+      <fieldset>
+        <legend>Ar ganaouenn/barzhoneg</legend>
+        <div class="col-sm-12">
+            <div class="field">
+              <label>Titl:</label>
+            </div>
+          <div class="input-block">
+            <input type="text" class="form-control" placeholder="Titl ar ganaouenn" name="title" [(ngModel)]="form.title" #title="ngModel" required>
+          </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="field">
+              <label>Arzour:</label>
+            </div>
+          <div class="input-block">
+            <!--<input type="text" class="form-control" placeholder="Anv an arzhour" name="artist" [(ngModel)]="form.artist" #artist="ngModel" required>-->
+            <input class="form-control tt-query" name="artist" id="query" placeholder="Anv an arzhour" autocomplete="off" dir="auto" type="text" [(ngModel)]="form.artist" #artist="ngModel" (keyup)=filter() required>
+
+            <span class="tt-dropdown-menu" *ngIf="filteredList.length > 0 && !hidden">
+                <span class="tt-suggestions">
+                  <div class="tt-suggestion" *ngFor="let item of filteredList,let i=index" (click)="selectMatchingArtist(i)">
+                    <a> 
+                      <p style="white-space: normal;">{{item.artist}}<b *ngIf="!detected && i==0;else other_content"> (Krouiñ) </b></p>
+                      <ng-template #other_content></ng-template>
+                    </a>
+                  </div>
+                </span>
+            </span>
+
+          </div>
+
+
+          
+
+
+
+        </div>
+        <div class="col-sm-12">
+          <div class="field">
+            <label>Liamm:</label>
+          </div>
+        <div class="input-block">
+          <input type="text" class="form-control" placeholder="Liamm ar sonerezh (youtube, ...)" name="link" [(ngModel)]="form.link" #link="ngModel">
+        </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="field">
+              <label>Komzoù:</label>
+            </div>
+          <div class="input-block textarea">
+            <textarea rows="10" type="text" class="form-control" placeholder="Komzoù" name="content" [(ngModel)]="form.content" #content="ngModel" required></textarea>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <button type="submit" class="btn btn-default square-button" [disabled]="!myForm.form.valid">Kas</button>
+        </div>
+      </fieldset>
+      
+    </form>
+
+  </div>
+
+</div>

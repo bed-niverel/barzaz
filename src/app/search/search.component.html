@@ -1,10 +1,84 @@
-<!--The whole content below can be removed with the new code.-->
-<div style="text-align:center">
+<div class="row">
+
+  <div style="padding-top: 50px;" class="col-lg-8 col-lg-offset-2">
+
+    <span class="twitter-typeahead" style="position: relative; display: inline-block;">
+      <input class="form-control tt-query" name="query" id="query" placeholder="Klaskit titl ur ganaouenn, un arzour pe komzoù..." style="position: relative; vertical-align: top; height:45px; background-color: rgb(255, 255, 255);" autocomplete="off" dir="auto" type="text" [(ngModel)]=query (keyup)="search()" (keyup.enter)="searchItem()">
+
+        <span id="loading5" *ngIf="activeSpinner">
+            <span id="outerCircle"></span>
+      </span>
+        
+
+      <span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: block; right: auto;" *ngIf="songs.length > 0 && !hidden">
+        <span class="tt-suggestions" style="display: block;">
+          <h3 style="border-bottom: 1px solid #ccc;">kanaouennoù</h3>
+          <div class="tt-menu tt-suggestion" style="white-space: nowrap; cursor: pointer;text-align: left;" *ngFor="let item of songs">
+            <a href="/songs/{{item.slug}}">
+              <p style="white-space: normal;">{{item.title}}</p>
+            </a>
+          </div>
+        </span>
+        <span class="tt-suggestions" style="display: block;" *ngIf="artists.length > 0">
+          <h3 style="border-bottom: 1px solid #ccc;">Arzourien</h3>
+          <div class="tt-menu tt-suggestion" style="white-space: nowrap; cursor: pointer;text-align: left;" *ngFor="let item of artists">
+            <a href="/artists/{{item.name}}/songs">
+              <p style="white-space: normal;">{{item.name}}</p>
+            </a>
+          </div>
+        </span>
+      </span>
+
+    </span>
+
+  </div>
 
 </div>
 
-<div style="padding-top: 100px;width:80%;padding-left: 200px; padding-right: 200px;">
-    Skrivit ur ger pe meur a hini. 3 arouezenn d'an nebeutañ
+
+
+<div style="padding-top: 0px;">
+  <h2>Kanaouennoù</h2>
+  <div class="row" *ngFor="let item of _songs">
+    <div class="col-lg-2">
+      <div>
+        <a href="/songs/{{item.slug}}">
+          <p>{{item.title}}</p>
+        </a>
+      </div>
+      <div>
+        <a href="/artists/{{item.artist}}/songs">
+          <p>{{item.artist}}</p>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <p>{{item.content}}</p>
+    </div>
+</div>
+
+<!--
+<div>
+  <h2>Arzourien</h2>
+  <div *ngFor="let item of artists">
+    <a href="/artists/{{item.name}}/songs">
+      <p style="white-space: normal;">{{item.name}}</p>
+    </a>
+</div>
+-->
+
+
+
+
+
+
+
+
+<!--
+
+<div style="padding-top: 30px;width:80%;margin:auto;">
+    Skrivit ur ger pe meur 3 lizherenn d'an nebeutan
     <br>
     Arouezennoù aotreet : 0-9 hag A-Z
 
@@ -16,29 +90,35 @@
 </div>
 
 <div class="form-group row">
-  <div class="col-md-2">
+  <div class="col-md-4">
     Klask e-touez
   </div>
-    <select class="col-md-5" name="type" [(ngModel)]="selectedType" required>
-      <option *ngFor="let searchType of searchTypes" value={{searchType}}>{{searchType}}</option>
+    <select name="type" [(ngModel)]="selectedType" required>
+      <option *ngFor="let searchType of searchTypes" value={{searchType.type}}>{{searchType.name}}</option>
     </select>
 
 </div>
 
     <h3>{{sentence}}</h3>
+
+
         <article class="search-result row" *ngFor="let item of array">
 
-          <div class="col-xs-12 col-sm-12 col-md-2">
+          <div class="col-md-3">
             <ul class="meta-search">
               <li><i class="glyphicon glyphicon-user"></i> <span><a href="/artists/{{item.artist}}/songs">{{item.artist}}</a></span></li>
             </ul>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-            <h3><a href="/songs/{{item.title}}" title="">{{item.title}}</a></h3>
-            <p>{{item.song}}</p>
+          <div class="col-md-9">
+            <h3><a href="/songs/{{item.slug}}" title="">{{item.title}}</a></h3>
+            <p>{{item.song}}</p>            
           </div>
           <span class="clearfix borda"></span>
         </article>
 
 
   </div>
+
+-->
+
+

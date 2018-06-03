@@ -3,7 +3,6 @@ import { Location } from '@angular/common';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { DataService } from '../services/data.service';
 
-
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
@@ -11,6 +10,7 @@ import 'rxjs/add/operator/map';
 
 import {ElementRef} from '@angular/core';
 
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -21,34 +21,63 @@ export class HomeComponent implements OnInit {
 
   items: any[];
 
-
-  public query = '';
-
-  public filteredList = [];
+  public query:string = '';
+  public songs = [];
+  public artists = [];
   public elementRef;
 
+  private activeSpinner:boolean=false;
+  private hidden:boolean = false;
+
+  @HostListener('click', ['$event']) onClick(event) {
+    var target = event.target;
+    this.hidden = true
+    
+    if (target.id === "query") { 
+      this.hidden = false;
+    }
+  }
+
   filter() {
+    this.hidden = false;
 
     if (this.query !== "") {
+      this.activeSpinner= true;
       this.dataService.autocomplete(this.query).then((result) => {
-        this.filteredList = [];
-        console.log(result);
+        this.activeSpinner = false;
+        this.songs = [];
+        this.artists = [];
 
-        for (var i = 0 ; i < result['hits']['hits'].length; i ++) {
 
-          var content = result['hits']['hits'][i]._source.title;
-          this.filteredList.push(content)
+        let songs = result[0];
+        let artists = result[1];
+
+
+        for (var i = 0 ; i < songs['hits']['hits'].length; i ++) {
+
+          var title = songs['hits']['hits'][i]._source.title;
+          var slug = songs['hits']['hits'][i]._source.slug;
+          this.songs.push({"title":title, "slug":slug});
         }
+
+        for (var i = 0 ; i < artists['hits']['hits'].length; i ++) {
+          var name = artists['hits']['hits'][i]._source.name;
+          this.artists.push({"name":name});
+        }
+        console.log("artists");
+        console.log(this.artists);
 
       })
     } else {
-      this.filteredList = [];
+      this.songs = [];
+      this.artists = [];    
     }
   }
    
   select(item){
       this.query = item;
-      this.filteredList = [];
+      this.songs = [];
+      this.artists = [];
   }
 
 
@@ -61,35 +90,33 @@ export class HomeComponent implements OnInit {
   	this.getLatestSongs();
   }
 
-  searchItem(term:string, type:string) {
-  	console.log('term : ' + term + ' , type : ' + type);
+  searchItem() {
     
-    this.router.navigate(['/search'], { queryParams: {term:term, type:type} });
+    this.router.navigate(['/search/' + this.query]);
   }
 
 
-  getLatestSongs() {
+  async getLatestSongs() {
 
+    try {
+      this.items = await this.dataService.getLatestSongs();  
+    } catch(error) {
+      console.log(error);
+    }
 
-  	this.dataService.getLatestSongs().then((result) => {
-
-  		this.items = [];
-
-  		var title, artist;
-
-  		for (var i = 0 ; i < result['hits']['hits'].length ; i++) {
-  			title = result['hits']['hits'][i]._source.title;
-  			artist = result['hits']['hits'][i]._source.artist;
-  			this.items.push({title : title, artist : artist})
-  		}
-  		
-  	});
-  	 
   }
 
 
+  async getRandomSong() {
+    try {
+      let result = await this.dataService.getRandomSong();  
+      let songSlug = result[0].slug;
+      this.router.navigate(['/songs/' + songSlug]);
 
-	
+    } catch(error) {
+      console.log(error);
+    }
 
+  }
 
 }
