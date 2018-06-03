@@ -3,7 +3,7 @@
     <form #myForm="ngForm" action="" class="contact-form" (ngSubmit)="onSubmit(myForm)">
       <fieldset>
         <legend>Oberour</legend>
-        
+
         <div class="col-sm-12">
             <div class="field">
               <label>Anv :</label>
@@ -13,34 +13,34 @@
           </div>
           <div class="input-block" *ngIf="name.errors && (name.dirty || lastname.touched)" class="alert alert-danger">
               <div [hidden]="!name.errors.required">
-                An anv a zo rediet
+                Redit eo an anv
               </div>
               <div [hidden]="!name.errors.minlength">
                 An anv a rank bezañ hiroc'h eget 2 lizherenn
               </div>
           </div>
         </div>
-      
+
         <div class="col-sm-12">
             <div class="field">
-              <label>Postel:</label>
+              <label>Chomlec'h postel:</label>
             </div>
           <div class="input-block">
-            <input type="text" class="form-control" type="email"placeholder="Postel" name="email" [(ngModel)]="form.email" #email="ngModel" pattern="[^ @]*@[^ @]*" required>
+            <input type="text" class="form-control" type="email"placeholder="Chomlec'h postel" name="email" [(ngModel)]="form.email" #email="ngModel" pattern="[^ @]*@[^ @]*" required>
           </div>
           <div class="input-block" *ngIf="email.errors && (email.dirty || email.touched)"
                class="alert alert-danger">
               <div [hidden]="!email.errors.required">
-                Ar postel a zo rediet
+                Redit eo ar chomlec'h postel
               </div>
               <div [hidden]="!email.errors.pattern">
-                Ar postel n'eo ket eus ar stumm mat (skouer : toto@gmail.com)
+                Didalvoudek eo ar chomlec'h postel (skouer : toto@gmail.com)
               </div>
           </div>
         </div>
       </fieldset>
-      
-      
+
+
       <fieldset>
         <legend>Ar ganaouenn/barzhoneg</legend>
         <div class="col-sm-12">
@@ -57,12 +57,12 @@
             </div>
           <div class="input-block">
             <!--<input type="text" class="form-control" placeholder="Anv an arzhour" name="artist" [(ngModel)]="form.artist" #artist="ngModel" required>-->
-            <input class="form-control tt-query" name="artist" id="query" placeholder="Anv an arzhour" autocomplete="off" dir="auto" type="text" [(ngModel)]="form.artist" #artist="ngModel" (keyup)=filter() required>
+            <input class="form-control tt-query" name="artist" id="query" placeholder="Anv an arzour" autocomplete="off" dir="auto" type="text" [(ngModel)]="form.artist" #artist="ngModel" (keyup)=filter() required>
 
             <span class="tt-dropdown-menu" *ngIf="filteredList.length > 0 && !hidden">
                 <span class="tt-suggestions">
                   <div class="tt-suggestion" *ngFor="let item of filteredList,let i=index" (click)="selectMatchingArtist(i)">
-                    <a> 
+                    <a>
                       <p style="white-space: normal;">{{item.artist}}<b *ngIf="!detected && i==0;else other_content"> (Krouiñ) </b></p>
                       <ng-template #other_content></ng-template>
                     </a>
@@ -73,7 +73,7 @@
           </div>
 
 
-          
+
 
 
 
@@ -98,7 +98,7 @@
           <button type="submit" class="btn btn-default square-button" [disabled]="!myForm.form.valid">Kas</button>
         </div>
       </fieldset>
-      
+
     </form>
 
   </div>
