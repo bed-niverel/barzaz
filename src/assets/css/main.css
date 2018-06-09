@@ -144,7 +144,7 @@ a:after {
 #headerwrap h1 {
     margin-top: 100px;
     color: white;
-    font-size: 70px;
+    font-size: 4em;
     font-weight: 300;
     letter-spacing: 3px;
 }
@@ -155,64 +155,6 @@ a:after {
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-}
-
-/* Dark Grey Wrap */
-#dg {
-    background: #e0e0e0;
-    padding-top: 70px;
-    padding-bottom: 70px;
-    text-align: center;
-}
-
-#dg h4 {
-    font-weight: 700;
-}
-
-/* Light Grey */
-#lg {
-    background: #ebebeb;
-    padding-top: 70px;
-    padding-bottom: 70px;
-    text-align: center;
-}
-
-#lg h4 {
-    font-weight: 700;
-}
-
-
-/* Red Wrap */
-#r {
-    background: #ff7878;
-    padding-top: 35px;
-    padding-bottom: 35px;
-}
-
-#r h4 {
-    color: white;
-    font-weight: 700;
-}
-
-#r p {
-    color: white;
-}
-
-/* Blue Wrap */
-
-#blue {
-    background: #3498db;
-    padding-top: 35px;
-    padding-bottom: 35px;
-}
-
-#blue h4 {
-    color: white;
-    font-weight: 700;
-}
-
-#blue p {
-    color: white;
 }
 
 
@@ -316,6 +258,8 @@ div.grey-background {
 
 /*BUTTONS*/
 
+
+
 div.button-container {
     width:30%;
     margin:0 auto;
@@ -328,7 +272,7 @@ a.button-suggest div {
     font-size: 2rem;
     border: 2px solid #000;
     padding: 4px 20px;
-    font-weight: 700;
+    /*font-weight: 700;*/
     text-align: center;
     cursor: pointer;
 }
@@ -336,4 +280,21 @@ a.button-suggest div {
 a.button-suggest:active div,a.button-suggest:focus div,a.button-suggest:hover div,button:active,button:focus,button:hover {
     background:#000!important;
     color:#fff!important;
+}
+
+@media (max-width: 600px) {
+
+    div.button-container {
+        width:90%;
+    }
+
+    #headerwrap h1 {
+        font-size: 2em;
+    }
+
+    #headerwrap {
+        min-height: 450px;
+    }
+
+
 }

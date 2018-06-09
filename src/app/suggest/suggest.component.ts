@@ -135,7 +135,7 @@ export class SuggestComponent implements OnInit {
 
         for (var i = 0 ; i < result['hits']['hits'].length; i ++) {
 
-          var artist = result['hits']['hits'][i]._source.artist;
+          var artist = result['hits']['hits'][i]._source.name;
           if (artist.toLowerCase() === this.form.artist) {
             this.detected = true;
           }
