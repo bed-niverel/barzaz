@@ -11,11 +11,13 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
-  private query:string = '';
-  private songs = [];
-  private _songs = [];
-  private artists = [];
-  private hidden:boolean = true;
+  public query:string = '';
+  public songs = [];
+  public _songs = [];
+  public artists = [];
+  public hidden:boolean = true;
+
+  public activeSpinner;
 
 
   ngOnInit() {

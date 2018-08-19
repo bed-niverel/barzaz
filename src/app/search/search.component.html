@@ -1,9 +1,9 @@
-<div class="row">
+<div class="row padding-app">
 
-  <div style="padding-top: 50px;" class="col-lg-8 col-lg-offset-2">
+  <div style="padding-top: 50px;" class="col-lg-8 offset-lg-2">
 
     <span class="twitter-typeahead" style="position: relative; display: inline-block;">
-      <input class="form-control tt-query" name="query" id="query" placeholder="Klaskit titl ur ganaouenn, un arzour pe komzoù..." style="position: relative; vertical-align: top; height:45px; background-color: rgb(255, 255, 255);" autocomplete="off" dir="auto" type="text" [(ngModel)]=query (keyup)="search()" (keyup.enter)="searchItem()">
+      <input class="form-control tt-query" name="query" id="query" placeholder="Klaskit titl ur ganaouenn, un arzour pe komzoù..." style="position: relative; vertical-align: top; height:45px; background-color: rgb(255, 255, 255);" autocomplete="off" dir="auto" type="text" [(ngModel)]=query (keyup)="search(undefined)" (keyup.enter)="searchItem()">
 
         <span id="loading5" *ngIf="activeSpinner">
             <span id="outerCircle"></span>
@@ -37,11 +37,11 @@
 
 
 
-<div style="padding-top: 0px;">
+<div class="col-lg-8 offset-lg-2" style="padding-top: 0px">
   <h2>Kanaouennoù</h2>
-  <div class="row" *ngFor="let item of _songs">
+  <div class="row" *ngFor="let item of _songs" style="border-bottom: 2px solid grey;">
     <div class="col-lg-2">
-      <div>
+      <div style="font-weight: bold">
         <a href="/songs/{{item.slug}}">
           <p>{{item.title}}</p>
         </a>
@@ -53,7 +53,7 @@
       </div>
     </div>
 
-    <div class="col-lg-6">
+    <div>
       <p>{{item.content}}</p>
     </div>
 </div>

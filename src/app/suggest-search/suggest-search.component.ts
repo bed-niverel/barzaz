@@ -16,7 +16,7 @@ export class SuggestSearchComponent implements OnInit {
   public button = 'Ouzhpennañ'
   private detected:boolean = false;
 
-  private searchTitle:boolean = false;
+  public searchTitle:boolean = false;
 
 
   private type:number = 0;
@@ -24,7 +24,7 @@ export class SuggestSearchComponent implements OnInit {
 
   public filteredList = [];
 
-  private hidden:boolean = false;
+  public hidden:boolean = false;
 
   constructor(private router: Router, private dataService:DataService) {
   }

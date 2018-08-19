@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 import {HttpModule, Http, Response} from '@angular/http';
 import 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class DataService {
 
   //apiRoot : string = 'http://86.215.188.202/search/'
-  apiRoot: string = 'http://localhost:3000/search/';
+  //apiRoot: string = 'http://localhost:3000/search/';
   //apiRoot: string = 'http://192.168.1.188:3000/search/';
+
+  apiRoot = environment.apiRoot;
   apiPath: string = '';
 
   name : string = '';
@@ -116,7 +118,7 @@ export class DataService {
     }
   }
 
-  async getSongs(artist) : Promise<any[]> {
+  async getArtistSongs(artist) : Promise<any[]> {
 
     try {
       let result = await this.makeRequest('artists/' + artist + '/songs');  
@@ -158,6 +160,27 @@ export class DataService {
     return promise;
   }
 
+  getSongs(letter) {
+    this.apiPath = 'songsByAlphabet'
+    let apiURL = `${this.apiRoot}${this.apiPath}/` + letter;
+
+    let promise = new Promise((resolve, reject) => {
+
+      this.http.get(apiURL)
+          .toPromise()
+          .then(
+              res => { // Success
+                console.log(res);
+                //this.results = res.json().results;
+                resolve(res.json());
+              },
+              msg => { // Error
+                reject(msg);
+              }
+          );
+    })
+    return promise;
+  }
 
 
   autocompleteTitles(query) {

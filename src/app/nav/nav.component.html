@@ -1,6 +1,6 @@
 
-
-<div class="navbar navbar-inverse navbar-fixed-top">
+<!--
+<div class="navbar fixed-top bg-dark">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -16,22 +16,34 @@
         <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"> <a [routerLink]="['/search']">Klask</a></li>
         <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}"> <a [routerLink]="['/artists']">Arzourien</a></li>
         <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"> <a [routerLink]="['/contact']">Darempred</a></li>
-
-
-
-        <!--
-        <li class="active"><a href="/">Degemer</a></li>
-        <li><a href="/search">Klask</a></li>
-        <li><a href="/artists">Arzourien</a></li>
-        <li><a href="/contact">Darempred</a></li>
-        -->
         <li><a data-toggle="modal" data-target="#myModal" href="#myModal"><i class="fa fa-envelope-o"></i></a></li>
       </ul>
     </div>
   </div>
 </div>
+-->
 
-        
-        
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Barzaz</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link" [routerLink]="['/']">Degemer</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}">
+        <a class="nav-link" [routerLink]="['/search']">Klask</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}">
+        <a class="nav-link" [routerLink]="['/artists']">Arzourien</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}">
+        <a class="nav-link" [routerLink]="['/songs']">Kanaouennoù</a>
+      </li>
+    </ul>
+  </div>
+</nav>
         
     

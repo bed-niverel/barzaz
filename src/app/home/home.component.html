@@ -1,10 +1,10 @@
-<div id="headerwrap">
+<div id="headerwrap" style="  display: flex;
+  align-items: center;
+  justify-content: center;">
 	<div class="container">
 		<div class="row centered">
-			<div class="col-lg-8 col-lg-offset-2">
+			<div class="col-lg-8 offset-lg-2">
 			<h1>kavit komzoù ho kanaouennoù karetañ</h1>
-
-
 				<span class="twitter-typeahead">
 					<input class="form-control tt-query" name="query" id="query" placeholder="Klaskit titl ur ganaouenn, un arzour pe komzoù..." autocomplete="off" dir="auto" type="text" [(ngModel)]=query (keyup)=filter() (keyup.enter)="searchItem()">
 
@@ -22,7 +22,7 @@
 
 							<div class="label-dropdown-menu">Kanaouennoù</div>
 							<div class="tt-menu tt-suggestion" *ngFor="let item of songs">
-								<a href="/songs/{{item.slug}}">
+								<a href="/songs/{{item.artist}}/{{item.slug}}">
 									<p style="white-space: normal;">{{item.title}}</p>
 								</a>
 							</div>
@@ -36,9 +36,7 @@
 							</div>
 						</span>
 					</span>
-
 				</span>
-
 			</div>
 		</div>
 	</div>
@@ -47,13 +45,15 @@
 
 
 
-<div class="container w">
-	<div class="row centered">
-		<h4>Kanaouennoù ouzhpennet da ziwezhañ</h4>
-		<br><br>
-		<div class="col-lg-4" *ngFor="let item of items">
-			<i class="fa fa-music"></i>
-			<h4><a href="/songs/{{item.slug}}">{{item.title}}</a></h4>
+<div class="container w text-center">
+	<h4>Kanaouennoù ouzhpennet da ziwezhañ</h4>
+	<br>
+	<div class="row">
+		<div class="col-md-4" *ngFor="let item of items">
+			<a href="/songs/{{item.slug}}">
+				<i class="fa fa-music ml-auto"></i>
+				<h4>{{item.title}}</h4>
+			</a>
 			<small>{{item.artist}}</small>
 		</div>
 	</div>
@@ -63,7 +63,7 @@
 
 <div class="grey-background">
 	<div class="container wb">
-		<div class="row centered">
+		<div class="text-center">
 			<h4>Ur ganaouenn/barzhoneg dre zegouezh!</h4>
 			<p>Ha c'hoant ho peus da zizoleiñ kanaouennoù ha barzhonegoù nevez? Implijit ar bouton "dre zegouezh"!</p>
 			<div class="button-container">
@@ -77,7 +77,7 @@
 
 
 <div class="container w">
-	<div class="row centered">
+	<div class="text-center">
 		<h4>Kinnig ur ganaouenn</h4>
 		<p>Ne gavoc'h ket ur ganaouenn pe ur barzhoneg? Ouzhpennit anezhi!</p>
 		<div class="button-container">
@@ -91,9 +91,12 @@
 
 <!-- FOOTER da glokaat-->
 <div id="f">
-	<div class="container">
-		<div class="row centered">
-			<a href="https://twitter.com/bedniverel"><i class="fa fa-twitter"></i></a><a href="https://www.facebook.com/bedniverel/"><i class="fa fa-facebook"></i></a>
-		</div>
+	<div class="container text-center">
+		<a href="https://twitter.com/bedniverel">
+			<i class="fa fa-twitter"></i>
+		</a>
+		<a href="https://www.facebook.com/bedniverel/">
+			<i class="fa fa-facebook"></i>
+		</a>
 	</div>
 </div>

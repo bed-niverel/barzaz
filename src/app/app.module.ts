@@ -15,10 +15,11 @@ import { NavComponent } from './nav/nav.component';
 import { SearchComponent } from './search/search.component';
 import { HomeComponent } from './home/home.component';
 import { ArtistComponent } from './artist/artist.component';
-import { SongListComponent } from './song-list/song-list.component';
+import { ArtistSongListComponent } from './artist-song-list/artist-song-list.component';
 import { SuggestSearchComponent } from './suggest-search/suggest-search.component';
 import { SuggestComponent } from './suggest/suggest.component';
 import { SuggestSuccessComponent } from './suggest/suggest-success/suggest-success.component';
+import { SongListComponent } from './song-list/song-list.component';
 
 
 export class PlunkerMaterialModule {}
@@ -41,11 +42,15 @@ const appRoutes: Routes = [
 		component:SuggestComponent
 	},
 	{
+		path:'search',
+		component:SearchComponent
+	},
+	{
 		path:'search/:term',
 		component:SearchComponent
 	},
 	{
-		path:'songs/:songid',
+		path:'songs/:artistid/:songid',
 		component:SongComponent
 	},
 	{
@@ -58,8 +63,17 @@ const appRoutes: Routes = [
 	},
 	{
 		path:'artists/:artistid/songs',
+		component:ArtistSongListComponent
+	},
+	{
+		path:'songs/:id',
 		component:SongListComponent
-	}
+	},
+	{
+		path:'songs',
+		redirectTo: '/songs/A', pathMatch: 'full'
+	},
+
 ];
 
 
@@ -72,10 +86,11 @@ const appRoutes: Routes = [
     SearchComponent,
     HomeComponent,
     ArtistComponent,
-    SongListComponent,
+    ArtistSongListComponent,
     SuggestSearchComponent,
     SuggestComponent,
-    SuggestSuccessComponent
+    SuggestSuccessComponent,
+    SongListComponent
   ],
   imports: [
     BrowserModule,

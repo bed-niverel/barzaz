@@ -18,6 +18,8 @@ export class SongComponent implements OnInit {
   url: SafeResourceUrl;
   songs: any[];
 
+  public alphabet;
+
   constructor(private route: ActivatedRoute, private dataService:DataService, public sanitizer:DomSanitizer) {
      this.route.params.subscribe( params => this.slug = params.songid );
 	}
@@ -53,7 +55,7 @@ export class SongComponent implements OnInit {
   async getSongs(artist: string) {
 
     try {
-      let songs = await this.dataService.getSongs(artist);  
+      let songs = await this.dataService.getArtistSongs(artist);  
 
       for (var i = 0 ; i < songs.length ; i++) {
         if (songs[i].slug == this.slug) {

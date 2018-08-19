@@ -1,20 +1,15 @@
-
-
-
-
-<div class="container songContainer" style="text-align:center;">
-
-	<h4 class="title">{{title}}</h4>
-	<h5 class="author"> Skrivet gant <a href="/artists/{{artist}}/songs">{{artist}}</a></h5>
+<div class="container row text-center padding-app">
 
 	<!--TODO : change with request-->
-	<div class="col-sm-offset-2 col-sm-6">
+	<div class="offset-md-2 col-md-6">
+		<h4 class="title">{{title}}</h4>
+		<h5 class="author"> Skrivet gant <a href="/artists/{{artist}}/songs">{{artist}}</a></h5>
 		<!--<pre>{{song}}</pre>-->
 		<div style="white-space: pre-line;" [innerHTML]="song"></div>
 	</div>
 
 
-	<div class="col-sm-4">
+	<div class="col-md-4">
 		<a class="button-suggest" href="/suggest/edit/{{slug}}">
 			<div>Reizhañ ar c'homzoù</div>
 		</a>
@@ -28,7 +23,7 @@
 
 		<div>
 			Skrivet gant ar memes arzour : 
-			<div *ngFor="let song of songs"><a href='/songs/{{song.slug}}'>{{song.title}}</a></div>
+			<div *ngFor="let song of songs"><a href='/songs/{{artist}}/{{song.slug}}'>{{song.title}}</a></div>
 		        <ul class="pagination">
 				    <li class="alphabetLetter" *ngFor="let letter of alphabet, let i = index" [class.active]="i == selectedRow" (click)="setClickedRow(i);getArtists(letter)">
 				        	{{letter}}

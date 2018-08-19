@@ -16,7 +16,7 @@ import { HostListener } from '@angular/core';
 
 export class SuggestComponent implements OnInit {
 
-  private form = new SongInfo('','','','','','');
+  public form = new SongInfo('','','','','','','');
 
   private title:string='';
 
@@ -31,10 +31,14 @@ export class SuggestComponent implements OnInit {
   private detected:boolean = false;
   public query = '';
   public filteredList = [];
-  private hidden:boolean = false;
+  public hidden:boolean = false;
 
   public button = 'Ouzhpennañ'
   private type:number = 0;
+
+
+  public lastname;
+  public checkboxValue;
 
   constructor(private dataService:DataService, private _route: ActivatedRoute, private _router: Router) {
     this.router=_router;
@@ -64,13 +68,13 @@ export class SuggestComponent implements OnInit {
         var obj = result[0];
         this.id = result[0]['id'];
 
-        this.form = new SongInfo('','',obj['title'],obj['artist'],obj['link'],obj['content']);
+        this.form = new SongInfo('','',obj['title'],obj['artist'],obj['link'],obj['reference'],obj['content']);
       } catch (error) {
         console.log(error);
       }
     } else {
       this.dataService.currentMessage.subscribe(title => this.title = title)
-      this.form = new SongInfo('','',this.title,'','','');
+      this.form = new SongInfo('','',this.title,'','','','');
     }
   }
   

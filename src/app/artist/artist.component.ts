@@ -41,8 +41,8 @@ export class ArtistComponent implements OnInit {
         this.setClickedRow(this.alphabet.indexOf(this.letter));
     }
 
-		getArtists(letter: string) {
-			this.location.go('/artists/' + letter);
+	getArtists(letter: string) {
+		this.location.go('/artists/' + letter);
 
 	  	this.dataService.getArtists(letter).then((data) => {
 				//console.log(data['result']);
@@ -52,8 +52,7 @@ export class ArtistComponent implements OnInit {
 	      // initialize to page 1
 	      this.setPage(1);
 	  	})
-		}
-
+	}
 
     setPage(page: number) {
         if (page < 1 /*|| page > this.pager.totalPages*/) {

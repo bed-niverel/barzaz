@@ -26,8 +26,8 @@ export class HomeComponent implements OnInit {
   public artists = [];
   public elementRef;
 
-  private activeSpinner:boolean=false;
-  private hidden:boolean = false;
+  public activeSpinner:boolean=false;
+  public hidden:boolean = false;
 
   @HostListener('click', ['$event']) onClick(event) {
     var target = event.target;
@@ -57,7 +57,8 @@ export class HomeComponent implements OnInit {
 
           var title = songs['hits']['hits'][i]._source.title;
           var slug = songs['hits']['hits'][i]._source.slug;
-          this.songs.push({"title":title, "slug":slug});
+          var artist = songs['hits']['hits'][i]._source.artist;
+          this.songs.push({"title":title, "slug":slug, "artist":artist});
         }
 
         for (var i = 0 ; i < artists['hits']['hits'].length; i ++) {

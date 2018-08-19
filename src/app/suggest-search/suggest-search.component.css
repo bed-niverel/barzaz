@@ -69,6 +69,10 @@ div.background {
   height: 100%;
   position: absolute;
   background: url(../../assets/img/header-bg.jpg) no-repeat center top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 div.form-suggestion {

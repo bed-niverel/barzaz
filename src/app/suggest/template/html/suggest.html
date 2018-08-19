@@ -1,4 +1,4 @@
-<div class="top-padding">
+<div class="padding-app">
   <div class="contact-wrap">
     <form #myForm="ngForm" action="" class="contact-form" (ngSubmit)="onSubmit(myForm)">
       <fieldset>
@@ -26,7 +26,7 @@
               <label>Chomlec'h postel:</label>
             </div>
           <div class="input-block">
-            <input type="text" class="form-control" type="email"placeholder="Chomlec'h postel" name="email" [(ngModel)]="form.email" #email="ngModel" pattern="[^ @]*@[^ @]*" required>
+            <input type="text" class="form-control" type="email" placeholder="Chomlec'h postel" name="email" [(ngModel)]="form.email" #email="ngModel" pattern="[^ @]*@[^ @]*" required>
           </div>
           <div class="input-block" *ngIf="email.errors && (email.dirty || email.touched)"
                class="alert alert-danger">
@@ -57,39 +57,47 @@
             </div>
           <div class="input-block">
             <!--<input type="text" class="form-control" placeholder="Anv an arzhour" name="artist" [(ngModel)]="form.artist" #artist="ngModel" required>-->
-            <input class="form-control tt-query" name="artist" id="query" placeholder="Anv an arzour" autocomplete="off" dir="auto" type="text" [(ngModel)]="form.artist" #artist="ngModel" (keyup)=filter() required>
+            <input class="form-control tt-query" name="artist" id="query" placeholder="Anv an arzour" autocomplete="off" dir="auto" type="text" [(ngModel)]="form.artist" #artist="ngModel" (keyup)=filter() [disabled]="checkboxValue" required>
 
             <span class="tt-dropdown-menu" *ngIf="filteredList.length > 0 && !hidden">
-                <span class="tt-suggestions">
-                  <div class="tt-suggestion" *ngFor="let item of filteredList,let i=index" (click)="selectMatchingArtist(i)">
-                    <a>
-                      <p style="white-space: normal;">{{item.artist}}<b *ngIf="!detected && i==0;else other_content"> (Krouiñ) </b></p>
-                      <ng-template #other_content></ng-template>
-                    </a>
-                  </div>
-                </span>
+              <span class="tt-suggestions">
+                <div class="tt-suggestion" *ngFor="let item of filteredList,let i=index" (click)="selectMatchingArtist(i)">
+                  <a>
+                    <p style="white-space: normal;">{{item.artist}}<b *ngIf="!detected && i==0;else other_content"> (Krouiñ) </b></p>
+                    <ng-template #other_content></ng-template>
+                  </a>
+                </div>
+              </span>
             </span>
-
           </div>
-
-
-
-
-
-
         </div>
+        <div class="col-sm-12 mt-10" style="padding-top: 0px;">
+          <label>
+            <input [(ngModel)]="checkboxValue" type="checkbox" name="checkbox"/> Dianavezet
+          </label>
+        </div>
+
+
         <div class="col-sm-12">
           <div class="field">
             <label>Liamm:</label>
           </div>
-        <div class="input-block">
-          <input type="text" class="form-control" placeholder="Liamm ar sonerezh (youtube, ...)" name="link" [(ngModel)]="form.link" #link="ngModel">
-        </div>
+          <div class="input-block">
+            <input type="text" class="form-control" placeholder="Liamm ar sonerezh (youtube, ...)" name="link" [(ngModel)]="form.link" #link="ngModel">
+          </div>
         </div>
         <div class="col-sm-12">
-            <div class="field">
-              <label>Komzoù:</label>
-            </div>
+          <div class="field">
+            <label>Référañs:</label>
+          </div>
+          <div class="input-block">
+            <input type="text" class="form-control" placeholder="Référans ar sonerezh" name="reference" [(ngModel)]="form.reference" #reference="ngModel">
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="field">
+            <label>Komzoù:</label>
+          </div>
           <div class="input-block textarea">
             <textarea rows="10" type="text" class="form-control" placeholder="Komzoù" name="content" [(ngModel)]="form.content" #content="ngModel" required></textarea>
           </div>

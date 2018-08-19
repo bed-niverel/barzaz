@@ -10,3 +10,7 @@ li.active {
 	color:red;
 	font-weight: bold;
 }
+
+.pagination {
+	justify-content: center;
+}

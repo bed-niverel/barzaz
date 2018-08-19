@@ -1,0 +1,16 @@
+a {
+	cursor: pointer;
+}
+
+.alphabetLetter {
+	cursor: pointer;
+}
+
+li.active {
+	color:red;
+	font-weight: bold;
+}
+
+.pagination {
+	justify-content: center;
+}

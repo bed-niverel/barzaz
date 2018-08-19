@@ -1,16 +1,32 @@
-<div>
+<div class="padding-app">
     <div class="container">
-
         <div class="text-center">
-            <h1>Listenn kanaouennoù {{artist}}</h1>
+            <h1>Listenn kanaouennoù</h1>
 
+            <ul class="pagination">
+	    		<li class="alphabetLetter" *ngFor="let letter of alphabet, let i = index" [class.active]="i == selectedRow" (click)="setClickedRow(i);getSongs(letter)">
+	        	{{letter}}</li>
+	    	</ul>
 
-            <div *ngFor="let song of songs"><a href='/songs/{{song.slug}}'>{{song.title}}</a></div>
-		        <ul class="pagination">
-				    <li class="alphabetLetter" *ngFor="let letter of alphabet, let i = index" [class.active]="i == selectedRow" (click)="setClickedRow(i);getArtists(letter)">
-				        	{{letter}}
-				    </li>
-				</ul>
-			</div>
-		</div>
+            <div *ngFor="let item of pagedItems"><a href='/songs/{{item.artist}}/{{item.slug}}'>{{item.title}}</a></div>
+
+            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(1)">Kentañ</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(pager.currentPage - 1)">Kent</a>
+                </li>
+                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                    <a (click)="setPage(page)">{{page}}</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.currentPage + 1)">Da-heul</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.totalPages)">Diwezhañ</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
